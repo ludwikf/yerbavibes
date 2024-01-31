@@ -68,3 +68,31 @@ body {
 .displayBlock {
   display: block;
 }
+
+/* styles.css or global.css */
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-from-left {
+  animation: slideFromLeft 0.7s ease-out;
+}
+
+.animate-slide-from-right {
+  animation: slideFromRight 0.7s alternate;
+}
