@@ -1,12 +1,25 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { poorStory } from "@/app/components/fonts";
 import Link from "next/link";
+import { useInView } from "react-intersection-observer";
 
 export default function Yom() {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+  });
+  if (inView) {
+    console.log("xd");
+  }
   return (
-    <div className="w-screen h-screen bg-green-500 flex items-center overflow-hidden">
-      <div className="w-1/2 flex justify-center animate-slide-from-left ml-32">
+    <div className="max-w-screen relative h-screen bg-pageTheme flex items-center overflow-x-hidden ">
+      <div
+        ref={ref}
+        className={`w-1/2 flex justify-center ml-32 ${
+          inView ? "animate-slide-from-left" : "translate-x-[-110%]"
+        }`}
+      >
         <Image
           src={
             "https://firebasestorage.googleapis.com/v0/b/yerbavibes-651c1.appspot.com/o/pol_pl_Verde-Mate-Green-Organica-0-5kg-5039_5.png?alt=media&token=21511988-30b0-4ee8-b739-5531b545470c"
@@ -19,7 +32,12 @@ export default function Yom() {
           className="object-cover w-[500px] h-[500px] shadow-2xl"
         />
       </div>
-      <div className="w-1/2 flex justify-center animate-slide-from-right mr-32">
+      <div
+        ref={ref}
+        className={`w-1/2 flex justify-center mr-32 ${
+          inView ? "animate-slide-from-right" : "translate-x-[110%]"
+        }`}
+      >
         <div className="flex flex-col items-center">
           <div className={`${poorStory.className} text-green-900 text-4xl`}>
             Yerba of the month
@@ -27,7 +45,7 @@ export default function Yom() {
           <div className="text-black text-5xl">Verde Mate Green</div>
           <Link
             href={""}
-            className="text-black border-2 border-green-800 px-10 py-1.5 mt-5 hover:bg-green-600 transition rounded"
+            className="text-black border-2 border-green-800 px-10 py-1.5 mt-5 bg-pageTheme hover:brightness-[90%] transition rounded"
           >
             Explore
           </Link>

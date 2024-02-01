@@ -1,9 +1,13 @@
 import React from "react";
-import Yom from "../ui/main/home/yom";
+import Yom from "@/app/ui/main/home/Yom";
+import About from "@/app/ui/main/home/MainView";
+import Navbar from "../components/main/Navbar";
 
 export default function Page() {
   return (
-    <main>
+    <main className=" overflow-hidden">
+      <Navbar />
+      <About />
       <Yom />
     </main>
   );

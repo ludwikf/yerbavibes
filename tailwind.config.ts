@@ -16,6 +16,7 @@ const config: Config = {
       colors: {
         secondTheme: "#282828",
         mainTheme: "#ffa500",
+        pageTheme: "#22c55e",
       },
     },
     keyframes: {
