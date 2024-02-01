@@ -2,6 +2,7 @@ import React from "react";
 import Yom from "@/app/ui/main/home/Yom";
 import About from "@/app/ui/main/home/MainView";
 import Navbar from "../components/main/Navbar";
+import Popular from "../ui/main/home/Popular";
 
 export default function Page() {
   return (
@@ -9,6 +10,7 @@ export default function Page() {
       <Navbar />
       <About />
       <Yom />
+      <Popular />
     </main>
   );
 }

@@ -4,33 +4,33 @@ import Image from "next/image";
 import { poorStory } from "@/app/components/fonts";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
+import { height } from "@fortawesome/free-solid-svg-icons/fa0";
 
 export default function Yom() {
   const [ref, inView] = useInView({
     triggerOnce: true,
   });
-  if (inView) {
-    console.log("xd");
-  }
   return (
-    <div className="max-w-screen relative h-screen bg-pageTheme flex items-center overflow-x-hidden ">
+    <div className="max-w-screen relative h-[70vh] bg-pageTheme flex items-center overflow-x-hidden ">
       <div
         ref={ref}
         className={`w-1/2 flex justify-center ml-32 ${
           inView ? "animate-slide-from-left" : "translate-x-[-110%]"
         }`}
       >
-        <Image
-          src={
-            "https://firebasestorage.googleapis.com/v0/b/yerbavibes-651c1.appspot.com/o/pol_pl_Verde-Mate-Green-Organica-0-5kg-5039_5.png?alt=media&token=21511988-30b0-4ee8-b739-5531b545470c"
-          }
-          alt="yerba"
-          width={0}
-          height={0}
-          sizes="100vw"
-          priority
-          className="object-cover w-[500px] h-[500px] shadow-2xl"
-        />
+        <Link href={""}>
+          <Image
+            src={
+              "https://firebasestorage.googleapis.com/v0/b/yerbavibes-651c1.appspot.com/o/pol_pl_Verde-Mate-Green-Organica-0-5kg-5039_5.png?alt=media&token=21511988-30b0-4ee8-b739-5531b545470c"
+            }
+            alt="yerba"
+            width={0}
+            height={0}
+            sizes="100vw"
+            priority
+            className="object-cover w-[400px] h-[400px] shadow-2xl"
+          />
+        </Link>
       </div>
       <div
         ref={ref}
@@ -45,7 +45,7 @@ export default function Yom() {
           <div className="text-black text-5xl">Verde Mate Green</div>
           <Link
             href={""}
-            className="text-black border-2 border-green-800 px-10 py-1.5 mt-5 bg-pageTheme hover:brightness-[90%] transition rounded"
+            className="text-black border-2 select-none border-green-800 px-10 py-1.5 mt-5 bg-pageTheme hover:brightness-[90%] transition rounded"
           >
             Explore
           </Link>
