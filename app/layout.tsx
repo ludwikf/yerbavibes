@@ -7,6 +7,7 @@ import { getWebSettings } from "@/app/components/WebSettings";
 import React from "react";
 
 const SS3 = Roboto({ subsets: ["latin"], weight: "400" });
+
 export default async function RootLayout({
   children,
 }: {
