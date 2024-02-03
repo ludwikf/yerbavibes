@@ -1,4 +1,5 @@
 import { Roboto } from "next/font/google";
+import "./globals.css";
 
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";

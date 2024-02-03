@@ -5,6 +5,7 @@ import { poorStory } from "@/app/components/fonts";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { height } from "@fortawesome/free-solid-svg-icons/fa0";
+import Ratings from "@/app/components/Ratings";
 
 export default function Yom() {
   const [ref, inView] = useInView({
@@ -20,7 +21,7 @@ export default function Yom() {
           inView ? "animate-slide-from-left" : "translate-x-[-110%]"
         }`}
       >
-        <Link href={""}>
+        <Link href={"/yerba/productName"}>
           <Image
             src={"/fs.png"}
             alt="yerba"
@@ -42,10 +43,11 @@ export default function Yom() {
           <div className={`${poorStory.className} text-green-900 text-4xl`}>
             Yerba of the month
           </div>
-          <div className="text-black text-5xl">Verde Mate Green</div>
+          <div className="text-black text-5xl mb-2">Verde Mate Green</div>
+          <Ratings />
           <Link
-            href={""}
-            className={`text-black border-2 select-none border-green-800 px-10 py-1.5 mt-5 bg-none hover:text-pageTheme transition rounded`}
+            href={"/yerba/productName"}
+            className={`text-black border-2 select-none border-green-800 px-10 py-1.5 mt-4 bg-none hover:text-pageTheme transition rounded`}
           >
             Explore
           </Link>
