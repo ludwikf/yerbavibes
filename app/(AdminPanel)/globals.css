@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #161616;
+  @apply text-white;
+}
+
+.tCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.trTable:not(:first-child):nth-child(odd) {
+  background: #282828;
+}
+
+@keyframes rotate360 {
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+.rotate:hover .w-8 {
+  animation: rotate360 0.3s ease;
+}
+
+.loader {
+  border: 4px solid #ffa60065;
+  border-left: 4px solid #ffa500;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+.loader2 {
+  border: 4px solid #15151565;
+  border-left: 4px solid #000000;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hideScrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hideScrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.displayBlock {
+  display: block;
+}
+
+/* styles.css or global.css */
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(110%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-from-left {
+  animation: slideFromLeft 0.7s ease-out forwards;
+}
+
+.animate-slide-from-right {
+  animation: slideFromRight 0.7s alternate;
+}
