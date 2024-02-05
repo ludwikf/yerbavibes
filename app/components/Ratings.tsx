@@ -4,11 +4,11 @@ import React from "react";
 export default function Ratings() {
   return (
     <div className="flex">
-      <StarIcon className="w-7 text-[#ffc107]" />
-      <StarIcon className="w-7 text-[#ffc107]" />
-      <StarIcon className="w-7 text-[#ffc107]" />
-      <StarIcon className="w-7 text-[#ffc107]" />
-      <StarIcon className="w-7 text-[#ffc107]" />
+      <StarIcon className="w-7 text-pageTheme" />
+      <StarIcon className="w-7 text-pageTheme" />
+      <StarIcon className="w-7 text-pageTheme" />
+      <StarIcon className="w-7 text-pageTheme" />
+      <StarIcon className="w-7 text-pageTheme" />
     </div>
   );
 }

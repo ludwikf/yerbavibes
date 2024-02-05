@@ -6,7 +6,7 @@ import React from "react";
 export default function Hero() {
   return (
     <div className="max-w-screen h-screen flex justify-evenly items-center mx-52">
-      <div className="w-[350px] h-[350px] animateZoomIn">
+      <div className="min-w-[350px] h-[350px] animateZoomIn shadow-lg p-5">
         <PostImage src={"/guarana.png"} />
       </div>
       <div className="flex flex-col items-center justify-evenly h-[350px] w-[500px]">
