@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="w-1/6 flex flex-col justify-center items-center">
         <div className={`${poorStory.className} text-4xl`}>YerbaVibes</div>
         <div className="text-xs">
-          COPYRIGHT &copy; FS Innovations {new Date().getFullYear()}
+          COPYRIGHT &copy; FSInnovations {new Date().getFullYear()}
         </div>
       </div>
       <div className="w-1/6 flex flex-col justify-center items-center">
