@@ -3,11 +3,12 @@ import React from "react";
 import { poorStory } from "../fonts";
 import Link from "next/link";
 import PostImage from "../PostImage";
+import { HeartIcon } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
   return (
-    <div className="absolute flex w-2/3 left-[50%] translate-x-[-50%] justify-between text-lg pt-3 z-10 select-none">
-      <Link href={"/"}>
+    <div className="absolute flex w-full left-[50%] translate-x-[-50%] justify-between text-lg pt-3 z-10 select-none">
+      <Link href={"/"} className="ml-20">
         <ul>
           <li className="text-xl flex items-center gap-1">
             <div className="w-[30x] h-[30px]">
@@ -22,17 +23,23 @@ export default function Navbar() {
         </ul>
       </Link>
       <ul className="flex items-center text-[#222] gap-6">
-        <Link href={""} className="cursor-pointer hover:text-pageTheme">
-          Home
-        </Link>
-        <Link href={""} className="cursor-pointer hover:text-pageTheme">
+        <Link href={"/yerba"} className="cursor-pointer hover:text-pageTheme">
           Yerbas
         </Link>
         <Link href={""} className="cursor-pointer hover:text-pageTheme">
-          listaa1
+          Suggest
         </Link>
         <Link href={""} className="cursor-pointer hover:text-pageTheme">
-          listx2
+          About
+        </Link>
+      </ul>
+      <ul className="flex items-center justify-center">
+        <Link href={""} className="cursor-pointer hover:text-pageTheme">
+          <HeartIcon className="w-7" />
+        </Link>
+        <span className="text-[#888] mx-5">|</span>
+        <Link href={""} className="cursor-pointer hover:text-pageTheme mr-5">
+          Sign In
         </Link>
       </ul>
     </div>

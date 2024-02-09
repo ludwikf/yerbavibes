@@ -1,6 +1,6 @@
 import React from "react";
 import Yom from "@/app/ui/main/home/Yom";
-import About from "@/app/ui/main/home/Hero";
+import Hero from "@/app/ui/main/home/Hero";
 import Navbar from "../components/main/Navbar";
 import Popular from "../ui/main/home/Popular";
 import Footer from "../ui/main/Footer";
@@ -8,7 +8,7 @@ import Footer from "../ui/main/Footer";
 export default function Page() {
   return (
     <main className=" overflow-hidden">
-      <About />
+      <Hero />
       <Yom />
       <Popular />
     </main>
