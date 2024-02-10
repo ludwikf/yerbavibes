@@ -3,7 +3,7 @@ import React from "react";
 import { poorStory } from "../fonts";
 import Link from "next/link";
 import PostImage from "../PostImage";
-import { HeartIcon } from "@heroicons/react/24/outline";
+import { HeartIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
   return (
@@ -22,7 +22,28 @@ export default function Navbar() {
           </li>
         </ul>
       </Link>
-      <ul className="flex items-center text-[#222] gap-6">
+      <ul className="flex items-center text-[#222] ml-32">
+        <div className="w-[500px]">
+          <form>
+            <div className="rounded-lg flex">
+              <input
+                type="search"
+                id="default-search"
+                className="block w-full p-2 ps-4 text-sm text-gray-900 border-l-2 border-t-2 border-b-2 border-[#ccc] rounded-l-lg bg-bodyTheme focus:outline-none  focus:ring-pageTheme focus:border-pageTheme focus:shadow-lg placeholder:text-[#666]"
+                placeholder="Search for Yerba Mate products"
+                required
+              />
+              <button
+                type="submit"
+                className={`text-white bg-pageTheme hover:brightness-[90%] transition focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-r-lg text-sm px-4 py-2 `}
+              >
+                <MagnifyingGlassIcon className="w-6" />
+              </button>
+            </div>
+          </form>
+        </div>
+      </ul>
+      <ul className="flex items-center justify-center gap-6">
         <Link href={"/yerba"} className="cursor-pointer hover:text-pageTheme">
           Yerbas
         </Link>
@@ -32,12 +53,10 @@ export default function Navbar() {
         <Link href={""} className="cursor-pointer hover:text-pageTheme">
           About
         </Link>
-      </ul>
-      <ul className="flex items-center justify-center">
         <Link href={""} className="cursor-pointer hover:text-pageTheme">
           <HeartIcon className="w-7" />
         </Link>
-        <span className="text-[#888] mx-5">|</span>
+        <span className="text-[#888]">|</span>
         <Link href={""} className="cursor-pointer hover:text-pageTheme mr-5">
           Sign In
         </Link>

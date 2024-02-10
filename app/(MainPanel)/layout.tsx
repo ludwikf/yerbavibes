@@ -18,7 +18,6 @@ export default async function RootLayout({
   return (
     <main className={SS3.className}>
       <SessionProvider session={session}>
-        <Navbar />
         {children}
         <Footer />
       </SessionProvider>

@@ -17,6 +17,7 @@ const config: Config = {
         secondTheme: "#282828",
         mainTheme: "#ffa500",
         pageTheme: "#22c55e",
+        bodyTheme: "#ebe7d2",
       },
     },
     keyframes: {
