@@ -95,70 +95,65 @@ export default function RegisterForm() {
   }
 
   return (
-    <>
-      <div className="h-[100%] w-[100%] bg-secondTheme short:pt-3 short:bg-inherit short:w-[100%] short:h-[100%] short:rounded-none sm:w-[400px] tall:w-[800px] sm:h-[400px] tall:h-[800px] sm:rounded-2xl flex flex-col items-center justify-between">
-        <FontAwesomeIcon
-          className="w-[100px] h-[100px] text-mainTheme my-5 tall:w-[200px] tall:h-[200px] short:hidden"
-          icon={faCode}
-        />
-        <form
-          onSubmit={handleSubmit}
-          className="w-[90%] flex flex-col items-center"
-        >
+    <div className="w-[100%] flex flex-col items-center gap-5">
+      <div className="w-[30%] border-[1px] border-[#ccc] shadow rounded-xl py-6 px-7">
+        <div className="text-2xl font-bold mb-8">Create account</div>
+        <div>
           <input
+            id="username"
             type="text"
-            className="w-full border-0 tall:text-3xl tall:py-5 tall:px-6 bg-[#353535] placeholder:text-[#bebebe82] text-[#BEBEBE] rounded-full px-3 py-2 mb-5 focus:outline-none"
-            placeholder="Email"
-            required
-          />
-          <input
-            type="text"
-            className="w-full border-0 tall:text-3xl tall:py-5 tall:px-6 bg-[#353535] placeholder:text-[#bebebe82] text-[#BEBEBE] rounded-full px-3 py-2 mb-5 focus:outline-none"
+            className="w-full border-[1px] border-[#aaa] bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-5 focus:outline-none focus:border-pageTheme focus:shadow"
             placeholder="Username"
             required
           />
           <input
+            id="email"
+            type="text"
+            className="w-full border-[1px] border-[#aaa] bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-5 focus:outline-none focus:border-pageTheme focus:shadow"
+            placeholder="Email"
+            required
+          />
+          <input
+            id="password"
             type="password"
-            className="w-full border-0 tall:text-3xl tall:py-5 tall:px-6 bg-[#353535] placeholder:text-[#bebebe82] text-[#BEBEBE] rounded-full px-3 py-2 mb-5 focus:outline-none"
+            className="w-full border-[1px] border-[#aaa] bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-5 focus:outline-none focus:border-pageTheme focus:shadow"
             placeholder="Password"
             required
           />
-          <div className="flex w-full items-center ml-4 mb-6 tall:text-3xl">
-            <input
-              id="default-checkbox"
-              type="checkbox"
-              className="w-5 h-5 tall:w-6 tall:h-6 accent-mainTheme"
-            />
+          <input
+            id="confirmPassword"
+            type="password"
+            className="w-full border-[1px] border-[#aaa] bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 focus:outline-none focus:border-pageTheme focus:shadow"
+            placeholder="Confirm password"
+            required
+          />
+        </div>
 
-            <label
-              htmlFor="default-checkbox"
-              className="ms-2 text-ms text-[#ccc] select-none"
-            >
-              Newsletter
-            </label>
-          </div>
+        <div className="mt-7 flex flex-col">
           <button
             type="submit"
             disabled={loading}
-            className="w-[50%] tall:text-3xl tall:py-4 tall:px-4 tracking-wider font-bold text-md flex justify-center bg-mainTheme text- text-white py-2 rounded-full hover:bg-[#ea851998]"
+            className="bg-pageTheme p-2.5 text-white text-sm rounded-lg hover:brightness-[90%]"
           >
             {loading ? (
               <div className="w-6 h-6">
                 <ButtonSpinner />
               </div>
             ) : (
-              <p className="text-black">Register</p>
+              <p>Sign in</p>
             )}
           </button>
-          <p className="text-red-600 mt-4 ">{error && error}</p>
-        </form>
-        <div className="mb-10 sm:my-2 tall:my-5 tall:text-3xl">
-          <Link href={`/`} className="text-mainTheme flex gap-0.5">
-            <ArrowLeftIcon className="w-4 tall:w-8" />
-            <p>Go back</p>
-          </Link>
         </div>
       </div>
-    </>
+      <div className="">
+        Already have an account?
+        <Link
+          href={"/login"}
+          className="text-pageTheme hover:brightness-[99%] ml-1.5"
+        >
+          Sign in
+        </Link>
+      </div>
+    </div>
   );
 }

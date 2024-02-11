@@ -4,7 +4,7 @@ import "./globals.css";
 import { getServerSession } from "next-auth/next";
 import SessionProvider from "@/libs/SessionProvider";
 import Navbar from "../components/main/Navbar";
-import Footer from "../ui/main/Footer";
+import Footer from "../components/main/Footer";
 
 const SS3 = Roboto({ subsets: ["latin"], weight: "400" });
 

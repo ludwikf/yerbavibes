@@ -50,52 +50,58 @@ export default function LoginForm() {
   }
 
   return (
-    <>
-      <div className="bg-secondTheme short:bg-inherit short:pt-3 w-[100%] short:w-[100%] short:h-[100%] short:rounded-none sm:w-[400px] tall:w-[800px] h-[100%] sm:h-[400px] tall:h-[800px] sm:rounded-2xl flex flex-col items-center justify-between">
-        <FontAwesomeIcon
-          className="w-[100px] h-[100px] tall:w-[200px] tall:h-[200px] text-mainTheme my-5 short:hidden"
-          icon={faCode}
-        />
-        <form
-          onSubmit={handleSubmit}
-          className="w-[90%] h-[60%] flex flex-col items-center"
-        >
+    <div className="w-[100%] flex justify-center gap-[80px]">
+      <div className="w-[30%] h-[320px] border-[1px] border-[#ccc] shadow rounded-xl py-6 px-7">
+        <div className="text-2xl font-bold mb-8">Sign In</div>
+        <div>
           <input
             id="email"
             type="text"
-            className="w-full tall:text-3xl tall:py-5 tall:px-6 border-0 bg-[#353535] placeholder:text-[#bebebe82] text-[#BEBEBE] rounded-full px-3 py-2 mb-5 focus:outline-none"
+            className="w-full border-[1px] border-[#aaa] bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-5 focus:outline-none focus:border-pageTheme focus:shadow"
             placeholder="Email"
             required
           />
           <input
             id="password"
             type="password"
-            className="w-full tall:text-3xl tall:py-5 tall:px-6 border-0 bg-[#353535] placeholder:text-[#bebebe82] text-[#BEBEBE] rounded-full px-3 py-2 mb-6 tall:mb-12 focus:outline-none"
+            className="w-full border-[1px] border-[#aaa] bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 focus:outline-none focus:border-pageTheme focus:shadow"
             placeholder="Password"
             required
           />
+        </div>
+        <div className="mt-2 flex flex-col">
+          <div className="mb-7">
+            <Link
+              href={"/"}
+              className="text-sm text-pageTheme hover:brightness-[99%]"
+            >
+              Forgot password?
+            </Link>
+          </div>
           <button
             type="submit"
             disabled={loading}
-            className="w-[40%] tracking-wider font-bold text-md tall:text-3xl tall:py-4 tall:px-4 bg-mainTheme flex justify-center text-white py-2 rounded-full hover:bg-[#ea851998]"
+            className="bg-pageTheme p-2.5 text-white text-sm rounded-lg hover:brightness-[90%]"
           >
             {loading ? (
               <div className="w-6 h-6">
                 <ButtonSpinner />
               </div>
             ) : (
-              <p className="text-black">Login</p>
+              <p>Sign in</p>
             )}
           </button>
-          <p className="text-red-600 mt-4 ">{error && error}</p>
-        </form>
-        <div className="flex justify-center items-center mb-10 sm:my-2 tall:my-5 tall:text-3xl">
-          <Link href={`/add-admin`} className="text-mainTheme">
-            go to register
-          </Link>
-          <span className="mx-5 text-[#666]">||</span>
         </div>
       </div>
-    </>
+      <div className="w-1/3 flex flex-col p-6">
+        <div className="text-2xl font-bold mb-7">No account yet?</div>
+        <Link
+          href={"/register"}
+          className="bg-transparent border-2 border-pageTheme p-2 text-center text-pageTheme text-md rounded-lg hover:text-white hover:bg-pageTheme transition w-[80%]"
+        >
+          Create account
+        </Link>
+      </div>
+    </div>
   );
 }

@@ -57,7 +57,10 @@ export default function Navbar() {
           <HeartIcon className="w-7" />
         </Link>
         <span className="text-[#888]">|</span>
-        <Link href={""} className="cursor-pointer hover:text-pageTheme mr-5">
+        <Link
+          href={"/login"}
+          className="cursor-pointer hover:text-pageTheme mr-5"
+        >
           Sign In
         </Link>
       </ul>
