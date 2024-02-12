@@ -4,6 +4,7 @@ import { poorStory } from "../fonts";
 import Link from "next/link";
 import PostImage from "../PostImage";
 import { HeartIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
   return (
@@ -60,18 +61,22 @@ export default function Navbar() {
           About
         </Link>
         <Link
-          href={"/favorite"}
+          href={"/user/favorite"}
           className="cursor-pointer hover:text-pageTheme"
         >
           <HeartIcon className="w-7" />
         </Link>
         <span className="text-[#888]">|</span>
-        <Link
+        <Link href={"/user/settings"} className="flex items-center gap-1 mr-4">
+          Ludwik
+          <UserCircleIcon className="w-9" />
+        </Link>
+        {/* <Link
           href={"/login"}
           className="cursor-pointer hover:text-pageTheme mr-5 min-w-[55px]"
         >
           Sign In
-        </Link>
+        </Link> */}
       </ul>
     </div>
   );
