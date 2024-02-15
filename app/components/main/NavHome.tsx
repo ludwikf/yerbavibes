@@ -1,10 +1,16 @@
-import { HeartIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import { HeartIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import PostImage from "../PostImage";
 import { poorStory } from "../fonts";
+import { UserCircleIcon } from "@heroicons/react/16/solid";
+import Logout from "../Logout";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/libs/authOptions";
 
-export default function NavHome() {
+export default async function NavHome() {
+  const session: any = await getServerSession(authOptions);
+
   return (
     <div className="absolute flex w-full left-[50%] translate-x-[-50%] justify-between text-lg pt-4 z-10 select-none">
       <Link href={"/"} className="ml-20">
@@ -28,9 +34,6 @@ export default function NavHome() {
         <Link href={"/top"} className="cursor-pointer hover:text-pageTheme">
           Top Rated
         </Link>
-        <Link href={""} className="cursor-pointer hover:text-pageTheme">
-          About
-        </Link>
       </ul>
       <ul className="flex items-center justify-center gap-6">
         <Link
@@ -40,16 +43,28 @@ export default function NavHome() {
           <HeartIcon className="w-7" />
         </Link>
         <span className="text-[#888]">|</span>
-        <Link href={"/user/settings"} className="flex items-center gap-1 mr-4">
-          Ludwik
-          <UserCircleIcon className="w-9" />
-        </Link>
-        {/* <Link
-          href={"/login"}
-          className="cursor-pointer hover:text-pageTheme mr-5"
-        >
-          Sign In
-        </Link> */}
+        {session && session?.user?.role === "admin" && (
+          <Link href={"/admin-cp"} className="text-red-500">
+            Admin
+          </Link>
+        )}
+        {session ? (
+          <>
+            <Link href={"/user/settings"} className="flex items-center gap-1">
+              Ludwik
+              <UserCircleIcon className="w-9 text-[#888]" />
+            </Link>
+            <span className="text-[#888]">|</span>
+            <Logout />
+          </>
+        ) : (
+          <Link
+            href={"/login"}
+            className="cursor-pointer hover:text-pageTheme mr-5"
+          >
+            Sign In
+          </Link>
+        )}
       </ul>
     </div>
   );

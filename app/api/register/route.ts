@@ -20,7 +20,7 @@ export const POST = async (request: any) => {
         );
       } else if (existingUser.username === username) {
         return new NextResponse(
-          JSON.stringify({ error: "Nickname is already in use" }),
+          JSON.stringify({ error: "Username is already in use" }),
           { status: 400 }
         );
       }

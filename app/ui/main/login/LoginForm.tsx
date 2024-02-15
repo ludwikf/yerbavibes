@@ -1,6 +1,6 @@
 "use client";
 import React, { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ButtonSpinner } from "@/app/components/LoadingSpinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,68 +30,66 @@ export default function LoginForm() {
         setError("Invalid email or password");
       } else {
         setError("");
-        router.replace("/");
+        window.location.reload();
       }
     } catch (error) {
+      console.log(error);
       setError("An error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    if (sessionStatus === "authenticated") {
-      router.replace("/");
-    }
-  }, [sessionStatus, router]);
-
-  if (sessionStatus === "authenticated" || sessionStatus === "loading") {
-    return null;
-  }
-
   return (
     <div className="w-[100%] flex justify-center gap-[80px]">
-      <div className="w-[30%] h-[320px] border-[1px] border-[#ccc] shadow rounded-xl py-6 px-7">
+      <div className="w-[30%] min-h-[320px] border-[1px] border-[#ccc] shadow rounded-xl py-6 px-7">
         <div className="text-2xl font-bold mb-8">Sign In</div>
-        <div>
+        <form onSubmit={handleSubmit}>
           <input
             id="email"
             type="text"
-            className="w-full border-[1px] border-[#aaa] bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-5 focus:outline-none focus:border-pageTheme focus:shadow"
+            className={`w-full border-[1px] border-${
+              error && error.includes("Invalid") ? "red-500" : "[#aaa]"
+            } bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-5 focus:outline-none focus:border-pageTheme focus:shadow`}
             placeholder="Email"
             required
           />
           <input
             id="password"
             type="password"
-            className="w-full border-[1px] border-[#aaa] bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 focus:outline-none focus:border-pageTheme focus:shadow"
+            className={`w-full border-[1px] border-${
+              error && error.includes("Invalid") ? "red-500" : "[#aaa]"
+            } bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-5 focus:outline-none focus:border-pageTheme focus:shadow`}
             placeholder="Password"
             required
           />
-        </div>
-        <div className="mt-2 flex flex-col">
-          <div className="mb-7">
-            <Link
-              href={"/"}
-              className="text-sm text-pageTheme hover:brightness-[99%]"
+          <div className="mt-2 flex flex-col">
+            <div className="mb-3">
+              <Link
+                href={"/"}
+                className="text-sm text-pageTheme hover:brightness-[99%]"
+              >
+                Forgot password?
+              </Link>
+            </div>
+            {error && <div className="text-red-500">{error}</div>}
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-pageTheme flex justify-center p-2.5 text-white text-sm rounded-lg hover:brightness-[90%] mt-4"
             >
-              Forgot password?
-            </Link>
+              {loading ? (
+                <div className="w-6 h-6 flex items-center justify-center">
+                  <ButtonSpinner />
+                </div>
+              ) : (
+                <div className="h-6 flex items-center justify-center">
+                  <p>Sign in</p>
+                </div>
+              )}
+            </button>
           </div>
-          <button
-            type="submit"
-            disabled={loading}
-            className="bg-pageTheme p-2.5 text-white text-sm rounded-lg hover:brightness-[90%]"
-          >
-            {loading ? (
-              <div className="w-6 h-6">
-                <ButtonSpinner />
-              </div>
-            ) : (
-              <p>Sign in</p>
-            )}
-          </button>
-        </div>
+        </form>
       </div>
       <div className="w-1/3 flex flex-col p-6">
         <div className="text-2xl font-bold mb-7">No account yet?</div>
