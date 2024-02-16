@@ -24,13 +24,10 @@ export default async function Post() {
     <div className="w-[85%] h-[85%] short:w-[85%] lg:w-[80%] short:h-[85%] lg:h-[80%] flex flex-col items-center short:items-center lg:items-center">
       {post && post[0] && (
         <div className="flex flex-col items-center short:flex lg:block">
-          <div className="text-xl short:text-xl lg:text-2xl mb-3 xs:mb-6">
-            Latest Post
-          </div>
           <div className="flex flex-col items-center xs:block">
             <div className="flex flex-col xs:flex-row items-center short:mb-0 lg:mb-6 gap-3 min-h-[100px]">
-              <div className="w-[110px] h-[60px] xs:w-[140px] xs:h-[80px] relative flex justify-center">
-                <PostImage source={post[0].image} />
+              <div className="w-[110px] h-[110px] xs:w-[140px] xs:h-[80px] relative flex justify-center">
+                <PostImage src={post[0].image} />
               </div>
 
               <div className="flex flex-col items-center xs:block text-center xs:text-left">

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default async function PostReview() {
   return (
-    <main className="flex h-screen">
+    <main className="flex h-screen bg-[#161616] text-white">
       <div className="my-[25px] flex w-screen flex-col justify-center items-center">
         <div className="w-[90%] h-[16%] flex items-center ">
           <Link

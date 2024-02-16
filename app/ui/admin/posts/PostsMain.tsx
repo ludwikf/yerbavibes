@@ -207,7 +207,7 @@ export default function PostsMain() {
         </div>
 
         <Link
-          href={`/admin-cp/posts/new-post`}
+          href={`/admin-cp/yerbas/new-post`}
           className="text-center lg:bg-white lg:text-black lg:px-3 lg:py-2 rounded-full lg:rounded-xl hover:brightness-50 transition-all mb-3"
         >
           <span className="hidden lg:block">Add new</span>
@@ -224,7 +224,7 @@ export default function PostsMain() {
         <table className="w-[100%]">
           <tbody className="trTable">
             <tr className="bg-[#ffa60040] h-10 font-bold w-[100%] select-none">
-              <td className="min-w-[200px] lg:w-[30%] pl-10 rounded-s-3xl ">
+              <td className="pl-10 rounded-s-3xl ">
                 <p className="w-[40px]">Image</p>
               </td>
               <td className="min-w-[300px] lg:w-[30%] ">
@@ -244,7 +244,7 @@ export default function PostsMain() {
                   }}
                   className="w-[80px] cursor-pointer "
                 >
-                  Author
+                  Rating
                 </p>
               </td>
               <td className="min-w-[120px] lg:w-[15%]">
@@ -263,9 +263,9 @@ export default function PostsMain() {
             </tr>
             {filterPosts(searchQuery).map((post, index) => (
               <tr key={index} className="trTable h-[100px] rounded-3xl">
-                <td className="pl-3 rounded-s-3xl w-[70px] h-">
-                  <div className="w-[150px] h-[80px] relative flex justify-center items-center">
-                    <PostImage source={post.image} />
+                <td className="pl-5 rounded-s-3xl">
+                  <div className="w-[80px] h-[80px] relative flex justify-center items-center">
+                    <PostImage src={post.image} />
                   </div>
                 </td>
                 <td>{post.title}</td>
@@ -281,7 +281,7 @@ export default function PostsMain() {
                   <div className="flex gap-5 lg:gap-1">
                     <Link
                       rel="stylesheet"
-                      href={`/admin-cp/posts/edit-post/${post._id}`}
+                      href={`/admin-cp/yerbas/edit-post/${post._id}`}
                       className="cursor-pointer select-none hover:text-mainTheme"
                     >
                       <PencilSquareIcon className="w-6 lg:w-5" />

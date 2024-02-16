@@ -4,10 +4,10 @@ import { poorStory } from "../fonts";
 import Link from "next/link";
 import PostImage from "../PostImage";
 import { HeartIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { UserCircleIcon } from "@heroicons/react/24/outline";
 import { authOptions } from "@/libs/authOptions";
 import { getServerSession } from "next-auth";
 import Logout from "../Logout";
+import { UserCircleIcon } from "@heroicons/react/16/solid";
 
 export default async function Navbar() {
   const session: any = await getServerSession(authOptions);

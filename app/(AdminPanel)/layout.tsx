@@ -1,5 +1,4 @@
 import { Roboto } from "next/font/google";
-import "./admin.css";
 
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
@@ -24,7 +23,10 @@ export default async function RootLayout({
   }
 
   return (
-    <main className={SS3.className}>
+    <main
+      className={SS3.className}
+      style={{ background: "#161616", color: "white" }}
+    >
       <Navbar />
       {children}
     </main>

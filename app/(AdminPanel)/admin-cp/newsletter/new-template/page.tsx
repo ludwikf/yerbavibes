@@ -3,7 +3,7 @@ import NewTemplateMain from "@/app/ui/admin/newsletter/new-template/NewTemplateM
 
 export default async function NewTemplate() {
   return (
-    <main className="flex h-screen">
+    <main className="flex h-screen bg-[#161616] text-white">
       <NewTemplateMain />
     </main>
   );

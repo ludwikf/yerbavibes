@@ -10,19 +10,23 @@ import { app } from "@/utils/firebase";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 export default function EditPostMain() {
   const [file, setFile] = useState<File | null>(null);
   const [media, setMedia] = useState<string>("");
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [producer, setProducer] = useState("");
+  const [category, setCategory] = useState("");
+  const [strength, setStrength] = useState("");
+  const [origin, setOrigin] = useState("");
+  const [flavor, setFlavor] = useState("");
+  const [tags, setTags] = useState<any[]>([]);
+  const [details, setDetails] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { id } = useParams();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const router = useRouter();
-  const { data: session }: any = useSession();
 
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
@@ -38,7 +42,15 @@ export default function EditPostMain() {
     setIsSubmitting(true);
 
     const title = e.target[0].value;
-    const content = e.target[1].value;
+    const details = e.target[1].value;
+    const producer = e.target[2].value;
+    const category = e.target[3].value;
+    const strength = e.target[4].value;
+    const origin = e.target[5].value;
+    const flavor = e.target[6].value;
+    const tag1 = e.target[7].value;
+    const tag2 = e.target[8].value;
+    const tag3 = e.target[9].value;
     const image =
       media ||
       "https://static-00.iconduck.com/assets.00/no-image-icon-2048x2048-2t5cx953.png";
@@ -49,14 +61,26 @@ export default function EditPostMain() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title, content, image, session }),
+        body: JSON.stringify({
+          title,
+          details,
+          producer,
+          category,
+          strength,
+          origin,
+          flavor,
+          tag1,
+          tag2,
+          tag3,
+          image,
+        }),
       });
 
       if (!res.ok) {
         throw new Error("Error submitting");
       }
       if (res.status === 200) {
-        router.push("/admin-cp/posts");
+        router.push("/admin-cp/yerbas");
       }
     } catch (error) {
       throw new Error("Error submitting");
@@ -81,7 +105,13 @@ export default function EditPostMain() {
       if (response.ok) {
         const data = await response.json();
         setTitle(data.title);
-        setContent(data.content);
+        setDetails(data.details);
+        setProducer(data.producer);
+        setCategory(data.category);
+        setStrength(data.strength);
+        setOrigin(data.origin);
+        setFlavor(data.flavor);
+        setTags(data.tags);
         setMedia(data.image);
       }
     } catch (error: any) {
@@ -131,14 +161,14 @@ export default function EditPostMain() {
 
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.value = content;
+      textareaRef.current.value = details;
       adjustTextareaHeight();
     }
-  }, [content]);
+  }, [details]);
   return (
     <>
-      <div className="my-[25px] flex w-screen flex-col justify-center items-center">
-        <div className="w-[90%] min-h-[100%] flex mb-5">
+      <div className="my-[25px] flex w-screen flex-col justify-start items-center">
+        <div className="w-[90%] flex mb-5">
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-5 w-full mt-5 lg:mt-0"
@@ -151,12 +181,65 @@ export default function EditPostMain() {
               required
             />
             <textarea
-              defaultValue={content}
+              defaultValue={details}
               ref={textareaRef}
               className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
               placeholder="Content"
               onInput={adjustTextareaHeight}
               required
+            />
+            <input
+              defaultValue={producer}
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Producer"
+              required
+            />
+            <input
+              defaultValue={category}
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Category"
+              required
+            />
+            <input
+              defaultValue={strength}
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Strength"
+              required
+            />
+            <input
+              defaultValue={origin}
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Origin"
+              required
+            />
+            <input
+              defaultValue={flavor}
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Flavor"
+              required
+            />
+            <input
+              defaultValue={tags[0]}
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Tag #1"
+            />
+            <input
+              defaultValue={tags[1]}
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Tag #2"
+            />
+            <input
+              defaultValue={tags[2]}
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Tag #3"
             />
             <div>
               <input

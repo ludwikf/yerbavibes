@@ -10,7 +10,6 @@ import { app } from "@/utils/firebase";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 export default function NewPostMain() {
   const [file, setFile] = useState<File | null>(null);
@@ -18,8 +17,6 @@ export default function NewPostMain() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const { data: session }: any = useSession();
 
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
@@ -33,8 +30,15 @@ export default function NewPostMain() {
     e.preventDefault();
 
     const title = e.target[0].value;
-    const content = e.target[1].value;
-    const author = session.user.username;
+    const details = e.target[1].value;
+    const producer = e.target[2].value;
+    const category = e.target[3].value;
+    const strength = e.target[4].value;
+    const origin = e.target[5].value;
+    const flavor = e.target[6].value;
+    const tag1 = e.target[7].value;
+    const tag2 = e.target[8].value;
+    const tag3 = e.target[9].value;
     let image = media;
 
     if (!media) {
@@ -50,16 +54,31 @@ export default function NewPostMain() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title, content, author, image, session }),
+        body: JSON.stringify({
+          title,
+          details,
+          producer,
+          category,
+          strength,
+          origin,
+          flavor,
+          tag1,
+          tag2,
+          tag3,
+          image,
+        }),
       });
+
+      console.log(res);
 
       if (!res.ok) {
         throw new Error("Error submitting");
       }
       if (res.status === 200) {
-        router.push("/admin-cp/posts");
+        router.push("/admin-cp/yerbas");
       }
     } catch (error: any) {
+      console.log(error);
       throw new Error(error);
     } finally {
       setTimeout(() => {
@@ -112,8 +131,8 @@ export default function NewPostMain() {
   }, [file]);
   return (
     <>
-      <div className="my-[25px] flex w-screen flex-col justify-center items-center">
-        <div className="w-[90%] min-h-[100%] flex mb-5">
+      <div className="my-[25px] flex w-screen flex-col justify-start items-center">
+        <div className="w-[90%] flex mb-5">
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-5 w-full mt-5 lg:mt-0"
@@ -127,11 +146,56 @@ export default function NewPostMain() {
             <textarea
               ref={textareaRef}
               className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
-              placeholder="Content"
+              placeholder="Details"
               onInput={adjustTextareaHeight}
               required
             />
-            <div>
+            <input
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Producer"
+              required
+            />
+            <input
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Category"
+              required
+            />
+            <input
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Strength"
+              required
+            />
+            <input
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Origin"
+              required
+            />
+            <input
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Flavor"
+              required
+            />
+            <input
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Tag #1"
+            />
+            <input
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Tag #2"
+            />
+            <input
+              className="bg-inherit text-lg lg:text-2xl placeholder:text-[#999] focus:outline-none resize-none"
+              type="text"
+              placeholder="Tag #3"
+            />
+            <div className="mt-5">
               <input
                 type="file"
                 id="image"

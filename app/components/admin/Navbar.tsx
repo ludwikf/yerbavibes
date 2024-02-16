@@ -87,11 +87,11 @@ export default function Navbar() {
          } w-[100dvw] h-[100dvh] lg:hidden shortnav:fixed fixed backdrop-blur-md z-10`}
         onClick={toggleExpand}
       ></div>
-      <div className="absolute top-7 left-7 block shortnav:block lg:hidden">
+      <div className="absolute top-7 left-7 block shortnav:block lg:hidden bg-[#161616] text-white">
         <Bars3Icon className="w-7 cursor-pointer" onClick={toggleExpand} />
       </div>
       <main
-        className={`z-20 hidden lg:block absolute shortnav:absolute lg:static ${
+        className={`z-20 hidden lg:block absolute shortnav:absolute lg:static bg-[#161616] text-white ${
           expand ? "w-[200px]" : "w-[50px]"
         } 
         ${expand ? "displayBlock" : "hidden"}
@@ -151,9 +151,9 @@ export default function Navbar() {
                 </div>
               </Link>
               <Link
-                href={`/admin-cp/posts`}
+                href={`/admin-cp/yerbas`}
                 className={`hover:bg-mainTheme hover:text-black ${isActive(
-                  `/admin-cp/posts`
+                  `/admin-cp/yerbas`
                 )}  ${
                   expand ? "w-[150px]" : "w-[36px]"
                 } h-[35px] flex justify-start items-center rounded-xl`}
@@ -161,7 +161,7 @@ export default function Navbar() {
                 <div className={`flex ml-2`}>
                   <BookOpenIcon className="w-5 mr-1.5" />
                   <p className={`${expand ? "block" : "hidden"} select-none`}>
-                    Posts
+                    Yerbas
                   </p>
                 </div>
               </Link>

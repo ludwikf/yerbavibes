@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth/next";
 import SessionProvider from "@/libs/SessionProvider";
 import { getWebSettings } from "@/app/components/WebSettings";
 import React from "react";
+import "./globals.css";
 
 const SS3 = Roboto({ subsets: ["latin"], weight: "400" });
 

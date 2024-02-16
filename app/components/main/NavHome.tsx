@@ -51,7 +51,7 @@ export default async function NavHome() {
         {session ? (
           <>
             <Link href={"/user/settings"} className="flex items-center gap-1">
-              Ludwik
+              {session.user.username}
               <UserCircleIcon className="w-9 text-[#888]" />
             </Link>
             <span className="text-[#888]">|</span>
