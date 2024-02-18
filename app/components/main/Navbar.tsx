@@ -49,6 +49,12 @@ export default async function Navbar() {
         </div>
       </ul>
       <ul className="flex items-center justify-center gap-6">
+        <Link href={"/yerba"} className="cursor-pointer hover:text-pageTheme">
+          Yerba Mate
+        </Link>
+        <Link href={"/top"} className="cursor-pointer hover:text-pageTheme">
+          Top Rated
+        </Link>
         <Link
           href={"/user/favorite"}
           className="cursor-pointer hover:text-pageTheme"
