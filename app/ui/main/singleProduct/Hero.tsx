@@ -49,7 +49,7 @@ export default async function Hero({ data }: any) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col mt-5 items-center gap-1.5 w-[100%]">
+        <div className="flex flex-col mt-2 items-center gap-1.5 w-[100%]">
           <div className="text-[#888]">
             More{" "}
             <Link href={"/"} className="text-pageTheme">

@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Details({ data }: any) {
   return (
-    <div className="max-w-screen min-h-[90vh] flex justify-center items-center pb-10">
+    <div className="max-w-screen min-h-[90vh] flex justify-center items-start pb-10">
       <div className="h-full w-[1000px] flex flex-col items-center">
         <div className="text-4xl border-l-[8px] pl-2 border-pageTheme w-full">
           Details

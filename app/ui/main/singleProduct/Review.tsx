@@ -28,7 +28,7 @@ export default function Review() {
     };
   }, []);
   return (
-    <div className="max-w-screen min-h-screen flex justify-center items-center">
+    <div className="max-w-screen min-h-screen flex justify-center items-start">
       <div className="h-full w-[1000px] flex flex-col items-center">
         <div className="text-4xl border-l-[8px] pl-2 border-pageTheme w-full">
           Reviews
