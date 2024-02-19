@@ -1,5 +1,6 @@
 import PostImage from "@/app/components/PostImage";
 import Ratings from "@/app/components/Ratings";
+import FavoriteButton from "@/app/components/main/FavoriteButton";
 import { HeartIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
 import {
   HeartIcon as HeartIconActive,
@@ -25,6 +26,7 @@ export default async function Hero({ data }: any) {
       return null;
     }
   }
+
   const producerData = await fetchData();
   return (
     <div className="max-w-screen h-screen flex justify-evenly items-center mx-52">
@@ -38,11 +40,8 @@ export default async function Hero({ data }: any) {
           </div>
           <Ratings />
           <div className="text-[#888] text-lg mt-4 text-center flex gap-3">
-            <div className="group cursor-pointer">
-              <HeartIcon className="w-9 group-hover:hidden" />
-              <HeartIconActive className="w-9 hidden group-hover:block text-pageTheme" />
-            </div>
-            <div className="group cursor-pointer flex items-center gap-1">
+            <FavoriteButton id={data._id} />
+            <div className="group cursor-pointer flex items-center gap-1 select-none">
               <PlusCircleIcon className="w-9 group-hover:hidden" />
               <PlusCircleIconActive className="w-9 hidden group-hover:block text-pageTheme" />
               <div className="group-hover:text-pageTheme">Add review</div>
@@ -50,21 +49,21 @@ export default async function Hero({ data }: any) {
           </div>
         </div>
         <div className="flex flex-col mt-2 items-center gap-1.5 w-[100%]">
-          <div className="text-[#888]">
+          <div className="text-[#888] select-none">
             More{" "}
             <Link href={"/"} className="text-pageTheme">
               {data.producer}
             </Link>{" "}
             products
           </div>
-          <div className="flex gap-1.5">
+          <div className="flex justify-center gap-1.5 w-[100%]">
             {producerData.map((e: any) => (
               <Link
-                key={e}
+                key={e._id}
                 href={`/yerba/details?id=${e._id}`}
                 className="w-[130px] h-[130px] border-2 border-[#bbb] rounded p-1 flex justify-center items-center"
               >
-                <div className="w-[110px] h-[110px]">
+                <div className="w-[110px] h-[110px] flex justify-center items-center">
                   <PostImage src={`${e.image}`} />
                 </div>
               </Link>

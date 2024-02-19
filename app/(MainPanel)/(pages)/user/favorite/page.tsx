@@ -1,4 +1,5 @@
 import PostImage from "@/app/components/PostImage";
+import Favorite from "@/app/ui/main/user/favorite/Favorite";
 import {
   Cog6ToothIcon,
   HeartIcon,
@@ -10,9 +11,9 @@ import React from "react";
 
 export default function page() {
   return (
-    <div className="h-screen flex justify-center">
-      <div className="flex w-[80%] h-[440px] justify-center mt-[130px] ">
-        <div className="mt-3 w-[18%] h-[400px] flex flex-col justify-start">
+    <div className="min-h-screen flex justify-center">
+      <div className="flex w-[80%] min-h-[440px] justify-center mt-[130px] ">
+        <div className="mt-3 w-[18%] h-[400px] border-r-[1px] border-[#888] flex flex-col justify-start">
           <div className="px-3">Hello</div>
           <div className="px-3 font-bold text-lg mb-5">Ludwik</div>
           <ul className="w-full">
@@ -39,52 +40,9 @@ export default function page() {
             </Link>
           </ul>
         </div>
-        <div className="w-[60%] border-l-[1px] border-[#888] pl-10 py-1">
+        <div className="w-[60%] min-h-screen pl-10 py-1">
           <div className="text-3xl mb-10">Favorite List</div>
-          <div className="flex items-center h-[170px] mb-5 border-b-[1px] pb-5 border-[#ccc]">
-            <Link
-              href={"/yerba/productName"}
-              className="min-w-[150px] h-[150px]"
-            >
-              <PostImage src={"/fs.png"} />
-            </Link>
-            <div className="flex flex-col justify-between w-[60%] h-[100%] py-1 pl-5">
-              <div>
-                <Link href={"/yerba/productName"} className="font-bold text-lg">
-                  Verde Mate Green
-                </Link>
-                <div>Classic</div>
-              </div>
-              <div>VerdeMate</div>
-            </div>
-            <div className="flex flex-col items-end h-[100%] pl-5">
-              <button className="hover:bg-[#dcd8c5] p-1 rounded-xl">
-                <TrashIcon className="w-7" />
-              </button>
-            </div>
-          </div>
-          <div className="flex items-center h-[170px] mb-5 border-b-[1px] pb-5 border-[#ccc]">
-            <Link
-              href={"/yerba/productName"}
-              className="min-w-[150px] h-[150px]"
-            >
-              <PostImage src={"/fs.png"} />
-            </Link>
-            <div className="flex flex-col justify-between w-[60%] h-[100%] py-1 pl-5">
-              <div>
-                <Link href={"/yerba/productName"} className="font-bold text-lg">
-                  Verde Mate Green
-                </Link>
-                <div>Classic</div>
-              </div>
-              <div>VerdeMate</div>
-            </div>
-            <div className="flex flex-col items-end h-[100%] pl-5">
-              <button className="hover:bg-[#dcd8c5] p-1 rounded-xl">
-                <TrashIcon className="w-7" />
-              </button>
-            </div>
-          </div>
+          <Favorite />
         </div>
       </div>
     </div>

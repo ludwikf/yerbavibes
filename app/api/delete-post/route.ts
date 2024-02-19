@@ -2,6 +2,7 @@ import connectMongoDB from "@/libs/mongodb";
 import Log from "@/models/Log";
 import Post from "@/models/Post";
 import Review from "@/models/Review";
+import User from "@/models/User";
 import { NextResponse } from "next/server";
 
 export const DELETE = async (req: any) => {
@@ -17,6 +18,11 @@ export const DELETE = async (req: any) => {
     }
 
     await Review.deleteMany({ post: deletedPost._id });
+
+    await User.updateMany(
+      { "favorites.items.productId": deletedPost._id },
+      { $pull: { "favorites.items": { productId: deletedPost._id } } }
+    );
 
     const newLog = new Log({
       user: {
