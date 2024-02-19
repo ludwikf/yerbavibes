@@ -22,8 +22,14 @@ const userSchema = new mongoose.Schema(
       default: "user",
     },
     favorites: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Post",
+      items: [
+        {
+          productId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Post",
+          },
+        },
+      ],
     },
   },
   {
