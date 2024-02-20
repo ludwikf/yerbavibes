@@ -50,8 +50,11 @@ export default async function Yerba({ page, per_page }: any) {
               key={e._id}
               className="w-[30%] group hover:shadow-xl rounded-xl pb-5 px-2 border-b-[1px] border-[#ccc] transition"
             >
-              <Link href={`/yerba/details?id=${e._id}`}>
-                <div>
+              <div className="min-w-[100%] h-[0] relative pt-[100%]">
+                <Link
+                  href={`/yerba/details?id=${e._id}`}
+                  className="absolute top-0"
+                >
                   <Image
                     rel="stylesheet preload prefetch"
                     src={e.image}
@@ -61,10 +64,12 @@ export default async function Yerba({ page, per_page }: any) {
                     sizes="100vw"
                     className={`rounded-xl object-cover object-left select-none w-[100%]`}
                   />
-                </div>
+                </Link>
+              </div>
 
+              <div className="w-[100%] min-h-[216px] flex flex-col justify-between">
                 <div className="p-5">
-                  <div>{e.title}</div>
+                  <Link href={`/yerba/details?id=${e._id}`}>{e.title}</Link>
                   <div>
                     <div className="w-[100px] my-1">
                       <Ratings />
@@ -80,17 +85,18 @@ export default async function Yerba({ page, per_page }: any) {
                     Origin <span className="text-[#777]">{e.origin}</span>
                   </div>
                 </div>
-              </Link>
-              <div className="flex justify-center items-center gap-2 relative">
-                <Link
-                  href={`/yerba/details?id=${e._id}`}
-                  className="px-5 py-2 bg-pageTheme rounded-lg hover:brightness-[90%] transition"
-                >
-                  Explore
-                </Link>
-                <button className="text-[#888]">
-                  <FavoriteButton id={e._id} />
-                </button>
+
+                <div className="flex justify-center items-center gap-2 relative">
+                  <Link
+                    href={`/yerba/details?id=${e._id}`}
+                    className="px-5 py-2 bg-pageTheme rounded-lg hover:brightness-[90%] transition"
+                  >
+                    Explore
+                  </Link>
+                  <button className="text-[#888]">
+                    <FavoriteButton id={e._id} />
+                  </button>
+                </div>
               </div>
             </div>
           ))}

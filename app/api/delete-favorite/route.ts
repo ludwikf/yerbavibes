@@ -1,12 +1,19 @@
 import { NextResponse } from "next/server";
 import connectMongoDB from "@/libs/mongodb";
 import User from "@/models/User";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/libs/authOptions";
 
 export const PUT = async (req: any) => {
   try {
     const id = req.nextUrl.searchParams.get("id");
     const sessionData = await req.headers.get("Session");
-    const session = JSON.parse(sessionData);
+    let session;
+    if (sessionData) {
+      session = JSON.parse(sessionData);
+    } else {
+      session = await getServerSession(authOptions);
+    }
 
     await connectMongoDB();
 
