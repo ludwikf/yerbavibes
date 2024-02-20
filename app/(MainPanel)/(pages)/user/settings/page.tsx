@@ -1,18 +1,24 @@
+import UsernameEdit from "@/app/ui/main/user/settings/UsernameEdit";
+import { authOptions } from "@/libs/authOptions";
 import {
   Cog6ToothIcon,
   HeartIcon,
   StarIcon,
 } from "@heroicons/react/24/outline";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 import React from "react";
 
-export default function page() {
+export default async function page() {
+  const session: any = await getServerSession(authOptions);
   return (
     <div className="h-screen flex justify-center">
       <div className="flex w-[80%] h-[440px] justify-center mt-[130px] ">
         <div className="mt-3 w-[18%] h-[400px] flex flex-col justify-start">
           <div className="px-3">Hello</div>
-          <div className="px-3 font-bold text-lg mb-5">Ludwik</div>
+          <div className="px-3 font-bold text-lg mb-5">
+            {session?.user?.username}
+          </div>
           <ul className="w-full">
             <Link
               href={"/user/settings"}
@@ -44,19 +50,16 @@ export default function page() {
             <div>
               <div className="text-lg">Username</div>
               <div className="mt-2 mb-7 border-[1px] border-[#bbb] p-4 rounded-lg flex justify-between">
-                Ludwik{" "}
-                <span className="text-pageTheme cursor-pointer hover:brightness-[98%]">
-                  Edit
-                </span>
+                {session?.user?.username} <UsernameEdit />
               </div>
             </div>
             <div>
               <div className="text-lg">Password</div>
               <div className="mt-2 border-[1px] border-[#bbb] px-4 py-3 rounded-lg flex justify-between items-center">
                 <span className="text-2xl">••••••••</span>{" "}
-                <span className="text-pageTheme cursor-pointer hover:brightness-[98%]">
+                <button className="text-pageTheme cursor-pointer hover:brightness-[98%]">
                   Edit
-                </span>
+                </button>
               </div>
             </div>
           </div>

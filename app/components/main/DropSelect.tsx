@@ -46,7 +46,7 @@ export default function DropSelect() {
       <div
         className={`${
           drop ? "block" : "hidden"
-        } overflow-hidden absolute w-full border-r-[1px] border-b-[1px] border-l-[1px] border-[#aaa] text-sm rounded-b-lg bg-bodyTheme`}
+        } overflow-hidden absolute z-10 w-full border-r-[1px] border-b-[1px] border-l-[1px] border-[#aaa] text-sm rounded-b-lg bg-bodyTheme`}
       >
         <div className="hover:brightness-[90%] bg-bodyTheme px-3 py-2 select-none cursor-pointer">
           Most popular
