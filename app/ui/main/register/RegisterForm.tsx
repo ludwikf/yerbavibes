@@ -10,7 +10,6 @@ export default function RegisterForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
-  const { status: sessionStatus } = useSession();
 
   const isValidEmail = (email: string) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -92,8 +91,10 @@ export default function RegisterForm() {
           <input
             id="username"
             type="text"
-            className={`w-full border-[1px] border-${
-              error && error.includes("Username") ? "red-500" : "[#aaa]"
+            className={`w-full border-[1px] ${
+              error && error.includes("Username")
+                ? "border-[#EF4444]"
+                : "border-[#aaa]"
             } bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-5 focus:outline-none focus:border-pageTheme focus:shadow`}
             placeholder="Username"
             required
@@ -101,8 +102,10 @@ export default function RegisterForm() {
           <input
             id="email"
             type="text"
-            className={`w-full border-[1px] border-${
-              error && error.includes("Email") ? "red-500" : "[#aaa]"
+            className={`w-full border-[1px] ${
+              error && error.includes("Email")
+                ? "border-[#EF4444]"
+                : "border-[#aaa]"
             } bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-5 focus:outline-none focus:border-pageTheme focus:shadow`}
             placeholder="Email"
             required
@@ -110,8 +113,10 @@ export default function RegisterForm() {
           <input
             id="password"
             type="password"
-            className={`w-full border-[1px] border-${
-              error && error.includes("Password") ? "red-500" : "[#aaa]"
+            className={`w-full border-[1px] ${
+              error && error.includes("Password")
+                ? "border-[#EF4444]"
+                : "border-[#aaa]"
             } bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-5 focus:outline-none focus:border-pageTheme focus:shadow`}
             placeholder="Password"
             required
@@ -119,8 +124,10 @@ export default function RegisterForm() {
           <input
             id="confirmPassword"
             type="password"
-            className={`w-full border-[1px] border-${
-              error && error.includes("match") ? "red-500" : "[#aaa]"
+            className={`w-full border-[1px] ${
+              error && error.includes("match")
+                ? "border-[#EF4444]"
+                : "border-[#aaa]"
             } bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-4 focus:outline-none focus:border-pageTheme focus:shadow`}
             placeholder="Confirm password"
             required

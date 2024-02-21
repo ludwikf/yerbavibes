@@ -48,8 +48,10 @@ export default function LoginForm() {
           <input
             id="email"
             type="text"
-            className={`w-full border-[1px] border-${
-              error && error.includes("Invalid") ? "red-500" : "[#aaa]"
+            className={`w-full border-[1px] ${
+              error && error.includes("Invalid")
+                ? "border-[#EF4444]"
+                : "border-[#aaa]"
             } bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-5 focus:outline-none focus:border-pageTheme focus:shadow`}
             placeholder="Email"
             required
@@ -57,8 +59,10 @@ export default function LoginForm() {
           <input
             id="password"
             type="password"
-            className={`w-full border-[1px] border-${
-              error && error.includes("Invalid") ? "red-500" : "[#aaa]"
+            className={`w-full border-[1px] ${
+              error && error.includes("Invalid")
+                ? "border-[#EF4444]"
+                : "border-[#aaa]"
             } bg-transparent placeholder:text-[#888] rounded-lg px-3 py-2 mb-5 focus:outline-none focus:border-pageTheme focus:shadow`}
             placeholder="Password"
             required

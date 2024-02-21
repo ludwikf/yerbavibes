@@ -13,7 +13,7 @@ export default async function NavHome() {
 
   return (
     <div className="absolute flex w-full left-[50%] translate-x-[-50%] justify-between text-lg pt-4 z-10 select-none">
-      <Link href={"/"} className="ml-20">
+      <Link href={"/"} className="w-1/3 flex justify-center">
         <ul>
           <li className="text-xl flex items-center gap-1">
             <div className="w-[30x] h-[30px]">
@@ -27,7 +27,7 @@ export default async function NavHome() {
           </li>
         </ul>
       </Link>
-      <ul className="flex items-center text-[#222] gap-6">
+      <ul className="flex items-center text-[#222] gap-6 w-1/3 justify-center">
         <Link href={"/yerba"} className="cursor-pointer hover:text-pageTheme">
           Yerba Mate
         </Link>
@@ -35,7 +35,7 @@ export default async function NavHome() {
           Top Rated
         </Link>
       </ul>
-      <ul className="flex items-center justify-center gap-6">
+      <ul className="flex items-center justify-end gap-6 w-1/3">
         <Link
           href={"/user/favorite"}
           className="cursor-pointer hover:text-pageTheme"

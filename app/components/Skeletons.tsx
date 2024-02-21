@@ -47,6 +47,34 @@ export function CardSkeleton() {
   );
 }
 
+export function FavoriteSkeleton() {
+  return (
+    <>
+      <div
+        className={`${shimmer} relative flex w-[550px] h-[200px] overflow-hidden rounded-xl bg-bodyTheme p-2 shadow-sm`}
+      >
+        <div className="flex items-center justify-center truncate rounded-xl bg-[#ffffff30] w-[50%] h-[100%]">
+          <div className="h-7 w-20 rounded-md bg-[#00000010]" />
+        </div>
+        <div className="flex flex-col flex-grow justify-center">
+          <div className="flex px-4 py-2 mt-2">
+            <div className="h-5 w-5 rounded-md bg-[#00000010]" />
+            <div className="ml-2 h-6 w-[100%] rounded-md bg-[#00000010] text-sm font-medium" />
+          </div>
+          <div className="flex px-4 py-2">
+            <div className="h-5 w-5 rounded-md bg-[#00000010]" />
+            <div className="ml-2 h-6 w-[100%] rounded-md bg-[#00000010] text-sm font-medium" />
+          </div>
+          <div className="flex px-4 py-2">
+            <div className="h-5 w-5 rounded-md bg-[#00000010]" />
+            <div className="ml-2 h-6 w-[100%] rounded-md bg-[#00000010] text-sm font-medium" />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 export function Product() {
   return (
     <>

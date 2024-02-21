@@ -1,7 +1,6 @@
 import connectMongoDB from "@/libs/mongodb";
 import Log from "@/models/Log";
 import User from "@/models/User";
-import Post from "@/models/Post";
 import Newsletter from "@/models/Newsletter";
 import Review from "@/models/Review";
 import { NextResponse } from "next/server";
@@ -19,7 +18,6 @@ export const DELETE = async (req: any) => {
         status: 400,
       });
     }
-    await Post.deleteMany({ author: deletedUser.username });
 
     await Review.deleteMany({ user: deletedUser._id });
 

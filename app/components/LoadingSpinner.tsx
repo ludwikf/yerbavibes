@@ -7,3 +7,7 @@ export const LoadingSpinner: React.FC = () => {
 export const ButtonSpinner: React.FC = () => {
   return <div className="loader2"></div>;
 };
+
+export const FetchSpinner: React.FC = () => {
+  return <div className="loader3"></div>;
+};
