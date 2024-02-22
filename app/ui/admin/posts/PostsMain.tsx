@@ -5,6 +5,7 @@ import {
   PencilSquareIcon,
   TrashIcon,
   PlusCircleIcon,
+  StarIcon,
 } from "@heroicons/react/24/solid";
 import { LoadingSpinner } from "@/app/components/LoadingSpinner";
 import { useSession } from "next-auth/react";
@@ -117,20 +118,12 @@ export default function PostsMain() {
   };
 
   const handleRefreshPosts = async () => {
-    setIsLoading(true);
     try {
       setPosts([]);
-      setPage(1);
-      setHasMore(true);
-      setSearchQuery("");
-      setSortOrder("");
-      setSortBy("");
-
-      fetchHandler();
+      setInitialFetchComplete(false);
+      fetchAllPosts();
     } catch (error) {
       throw new Error("Error refreshing posts");
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -143,6 +136,30 @@ export default function PostsMain() {
       if (hasMore) {
         setPage((prevPage) => prevPage + 1);
       }
+    }
+  };
+
+  const addYom = async (post: any) => {
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/add-yom", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          post,
+        }),
+      });
+      if (res.ok) {
+        window.location.reload();
+      } else {
+        throw new Error("Failed to add yom");
+      }
+    } catch (error: any) {
+      throw new Error(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -182,6 +199,39 @@ export default function PostsMain() {
       fetchHandler();
     }
   }, [page, initialFetchComplete]);
+
+  const fetchAllPosts = async () => {
+    setIsLoading(true);
+    try {
+      const allPosts: any[] = [];
+      let currentPage = 1;
+      let hasMorePages = true;
+
+      while (hasMorePages) {
+        const res = await fetch(`/api/get-posts?page=${currentPage}`);
+        if (!res.ok) {
+          throw new Error("Error fetching posts");
+        }
+        const data = await res.json();
+        if (data.length === 0) {
+          hasMorePages = false;
+        } else {
+          allPosts.push(...data);
+          currentPage++;
+        }
+      }
+      setPosts(allPosts);
+    } catch (error: any) {
+      throw new Error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllPosts();
+    setInitialFetchComplete(true);
+  }, []);
 
   return (
     <>
@@ -288,6 +338,12 @@ export default function PostsMain() {
                     </Link>
                     <TrashIcon
                       onClick={() => deletePost(post._id)}
+                      className={`w-6 lg:w-5 cursor-pointer select-none hover:text-mainTheme ${
+                        isSubmitting ? "pointer-events-none" : ""
+                      }`}
+                    />
+                    <StarIcon
+                      onClick={() => addYom(post)}
                       className={`w-6 lg:w-5 cursor-pointer select-none hover:text-mainTheme ${
                         isSubmitting ? "pointer-events-none" : ""
                       }`}

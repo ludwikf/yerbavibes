@@ -47,6 +47,14 @@ export function CardSkeleton() {
   );
 }
 
+export function YomSkeleton() {
+  return (
+    <div
+      className={`max-w-screen relative h-[70vh] bg-gradient-to-l from-pageTheme to-[#444] flex items-center overflow-x-hidden`}
+    ></div>
+  );
+}
+
 export function FavoriteSkeleton() {
   return (
     <>
