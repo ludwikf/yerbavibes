@@ -6,24 +6,28 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 export default function Favorite() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const res = await fetch(`/api/get-favorite-list`);
-      if (!res.ok) {
-        throw new Error("Failed to fetch data");
-      }
 
-      const data = await res.json();
-      setData(data);
-    } catch (error) {
-      return null;
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      try {
+        const res = await fetch(`/api/get-favorite-list`);
+        if (!res.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const data = await res.json();
+        setData(data);
+      } catch (error: any) {
+        throw new Error(error);
+      } finally {
+        setLoading(false);
+      }
     }
-  };
+    fetchData();
+  }, []);
+
   const deleteFavorite = async (id: any) => {
     try {
       const res = await fetch(`/api/delete-favorite?id=${id}`, {
@@ -39,9 +43,6 @@ export default function Favorite() {
       return null;
     }
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <>
