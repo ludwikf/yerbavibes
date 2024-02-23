@@ -45,7 +45,6 @@ export default async function Yerba({ page, per_page, producer, flavor }: any) {
     entries = data.filter((e: any) => e.flavor === flavor);
     totalPages = Math.ceil(dataCount / per_page);
   }
-  //Sanda
   return (
     <>
       <Filter data={data} />
