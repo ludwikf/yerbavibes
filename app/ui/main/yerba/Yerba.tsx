@@ -9,7 +9,16 @@ import Link from "next/link";
 import React from "react";
 import Filter from "./Filter";
 
-export default async function Yerba({ page, per_page, producer, flavor }: any) {
+export default async function Yerba({
+  page,
+  per_page,
+  producer,
+  flavor,
+  strength,
+  category,
+  origin,
+  tags,
+}: any) {
   async function fetchData() {
     try {
       const res = await fetch(
@@ -27,27 +36,41 @@ export default async function Yerba({ page, per_page, producer, flavor }: any) {
     }
   }
   const data = await fetchData();
-
-  let dataCount = data.length;
-
-  const start = (Number(page) - 1) * Number(per_page);
-  const end = start + Number(per_page);
-  let entries = data.slice(start, end);
-  let totalPages = Math.ceil(dataCount / per_page);
-
+  let filteredData: any = [...data];
   if (producer !== "") {
-    entries = data.filter((e: any) => e.producer === producer);
-    dataCount = entries.length;
-    totalPages = Math.ceil(dataCount / per_page);
+    filteredData = filteredData.filter((e: any) => e.producer === producer);
   }
 
   if (flavor !== "") {
-    entries = data.filter((e: any) => e.flavor === flavor);
-    totalPages = Math.ceil(dataCount / per_page);
+    filteredData = filteredData.filter((e: any) => e.flavor === flavor);
   }
+
+  if (strength !== "") {
+    filteredData = filteredData.filter((e: any) => e.strength === strength);
+  }
+
+  if (category !== "") {
+    filteredData = filteredData.filter((e: any) => e.category === category);
+  }
+
+  if (origin !== "") {
+    filteredData = filteredData.filter((e: any) => e.origin === origin);
+  }
+
+  if (tags !== "") {
+    filteredData = filteredData.filter((e: any) => e.tags.includes(tags));
+  }
+
+  let dataCount = filteredData.length;
+
+  const start = (Number(page) - 1) * Number(per_page);
+  const end = start + Number(per_page);
+  let entries = filteredData.slice(start, end);
+  let totalPages = Math.ceil(filteredData / per_page);
+
   return (
     <>
-      <Filter data={data} />
+      <Filter data={data} filteredData={filteredData} />
       <div className="w-[100%] mr-20 mb-10 flex flex-col items-center">
         <div className="w-[98%] px-2 py-4 border-y-[1px] border-[#ccc] mb-5 flex justify-between items-center">
           <div className="text-[#888] text-sm">{dataCount} results</div>
@@ -57,6 +80,14 @@ export default async function Yerba({ page, per_page, producer, flavor }: any) {
               hasNextPage={end < dataCount}
               hasPrevPage={start > 0}
               totalPages={totalPages}
+              filters={{
+                producer,
+                flavor,
+                strength,
+                category,
+                origin,
+                tags,
+              }}
             />
           </div>
         </div>
@@ -117,15 +148,32 @@ export default async function Yerba({ page, per_page, producer, flavor }: any) {
             </div>
           ))}
         </div>
-        <div className="w-[90%] py-4 border-t-[1px] border-[#ccc] flex justify-end items-center">
-          <div className="flex gap-5">
-            <PaginationControls
-              hasNextPage={end < data.length}
-              hasPrevPage={start > 0}
-              totalPages={totalPages}
-            />
+
+        {dataCount ? (
+          <div className="w-[90%] py-4 border-t-[1px] border-[#ccc] flex justify-end items-center">
+            <div className="flex gap-5">
+              <PaginationControls
+                hasNextPage={end < dataCount}
+                hasPrevPage={start > 0}
+                totalPages={totalPages}
+                filters={{
+                  producer,
+                  flavor,
+                  strength,
+                  category,
+                  origin,
+                  tags,
+                }}
+              />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="w-[90%] py-4 border-t-[1px] border-[#ccc] flex justify-center items-center">
+            <div className="flex text-lg text-[#888]">
+              No yerba mate to display
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

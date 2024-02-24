@@ -11,6 +11,10 @@ export default async function page({
   const per_page = searchParams["per_page"] ?? "24";
   const producer = searchParams["producer"] ?? "";
   const flavor = searchParams["flavor"] ?? "";
+  const strength = searchParams["strength"] ?? "";
+  const category = searchParams["category"] ?? "";
+  const origin = searchParams["origin"] ?? "";
+  const tags = searchParams["tags"] ?? "";
 
   return (
     <div>
@@ -21,6 +25,10 @@ export default async function page({
             per_page={per_page}
             producer={producer}
             flavor={flavor}
+            strength={strength}
+            category={category}
+            origin={origin}
+            tags={tags}
           />
         </Suspense>
       </div>

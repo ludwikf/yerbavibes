@@ -16,7 +16,7 @@ export default function Details({ data }: any) {
               .map((tag: any) => (
                 <Link
                   key={tag}
-                  href={""}
+                  href={`/yerba/?tags=${tag}`}
                   className="border-[1px] mr-2 border-[#aaa] py-2 px-3 rounded-full text-sm hover:bg-[#c5c5c5]"
                 >
                   {tag}
@@ -28,32 +28,38 @@ export default function Details({ data }: any) {
           <div className="border-y-[1px] py-3 border-[#aaa]">
             <span className="font-bold">Producer</span>
             <span className="ml-5 text-[#333] hover:text-pageTheme select-none">
-              <Link href={""}>{data.producer}</Link>
+              <Link href={`/yerba/?producer=${data.producer}`}>
+                {data.producer}
+              </Link>
             </span>
           </div>
 
           <div className="border-b-[1px] py-3 border-[#aaa]">
             <span className="font-bold">Category</span>
             <span className="ml-5 text-[#333] hover:text-pageTheme select-none">
-              <Link href={""}>{data.category}</Link>
+              <Link href={`/yerba/?category=${data.category}`}>
+                {data.category}
+              </Link>
             </span>
           </div>
           <div className="border-b-[1px] py-3 border-[#aaa]">
             <span className="font-bold">Stimulation strength</span>
             <span className="ml-5 text-[#333] hover:text-pageTheme select-none">
-              <Link href={""}>{data.strength}</Link>
+              <Link href={`/yerba/?strength=${data.strength}`}>
+                {data.strength}
+              </Link>
             </span>
           </div>
           <div className="border-b-[1px] py-3 border-[#aaa]">
             <span className="font-bold">Origin of leaves</span>
             <span className="ml-5 text-[#333] hover:text-pageTheme select-none">
-              <Link href={""}>{data.origin}</Link>
+              <Link href={`/yerba/?origin=${data.origin}`}>{data.origin}</Link>
             </span>
           </div>
           <div className="border-b-[1px] py-3 border-[#aaa]">
             <span className="font-bold">Flavor</span>
             <span className="ml-5 text-[#333] hover:text-pageTheme select-none">
-              <Link href={""}>{data.flavor}</Link>
+              <Link href={`/yerba/?flavor=${data.flavor}`}>{data.flavor}</Link>
             </span>
           </div>
         </div>
