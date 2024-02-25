@@ -1,22 +1,11 @@
 "use client";
-import Ratings from "@/app/components/Ratings";
-import { UserCircleIcon } from "@heroicons/react/16/solid";
-import { PlusCircleIcon as PlusCircleIconActive } from "@heroicons/react/24/solid";
-import {
-  ChatBubbleLeftIcon,
-  MinusCircleIcon,
-  PlusCircleIcon,
-} from "@heroicons/react/24/outline";
-import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AddReviewButton from "@/app/components/main/AddReviewButton";
 import RatingStars from "@/app/components/RatingStars";
+import SingleReview from "@/app/components/main/SingleReview";
 
 export default function Review({ data }: any) {
-  const [show, setShow] = useState(false);
-  const dropRef = useRef<any>(null);
-
   const totalRating = data.reduce(
     (acc: any, review: any) => acc + review.rating,
     0
@@ -35,22 +24,6 @@ export default function Review({ data }: any) {
   data.forEach((review: any) => {
     ratingCounts[review.rating]++;
   });
-
-  console.log(ratingCounts);
-
-  const handleClickOutside = (event: any) => {
-    if (dropRef.current && !dropRef.current.contains(event.target)) {
-      setShow(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
 
   return (
     <div className="max-w-screen min-h-screen flex justify-center items-start">
@@ -90,50 +63,7 @@ export default function Review({ data }: any) {
             <AddReviewButton data={data} />
           </div>
           {data.map((e: any) => (
-            <div key={e._id} className="mb-14 relative w-[650px]">
-              <div className="flex items-center gap-3">
-                <UserCircleIcon className="w-12 text-[#aaa]" />
-                <div>{e.user.username}</div>
-              </div>
-              <div className="flex gap-2 items-center my-4">
-                <div className="w-[90px]">
-                  <Ratings />
-                </div>
-                <div className="text-sm text-[#666]">
-                  {new Date(e.createdAt).toLocaleDateString()}
-                </div>
-              </div>
-              <div>{e.comment}</div>
-              <div className="flex items-center gap-5 mt-3">
-                <div className="flex items-center text-[#999] gap-1">
-                  <div>6</div>
-                  <PlusCircleIcon className="w-7 cursor-pointer hover:text-[#555] transition" />
-                </div>
-                <div className="flex items-center text-[#999] gap-1">
-                  <div>1</div>
-                  <MinusCircleIcon className="w-7 cursor-pointer hover:text-[#555] transition" />
-                </div>
-              </div>
-              <div className="absolute right-0 top-0" ref={dropRef}>
-                <div className="group flex flex-col items-end">
-                  <button>
-                    <EllipsisVerticalIcon
-                      onClick={() => {
-                        setShow((e) => !e);
-                      }}
-                      className="w-6 cursor-pointer right-0"
-                    />
-                  </button>
-                  <div
-                    className={` ${
-                      show ? "block" : "hidden"
-                    } select-none cursor-pointer hover:text-pageTheme transition p-4 shadow-[0_10px_50px_-10px_rgba(0,0,0,0.3)] rounded`}
-                  >
-                    Flag inappropriate
-                  </div>
-                </div>
-              </div>
-            </div>
+            <SingleReview key={e._id} data={e} />
           ))}
           <div className="text-lg text-pageTheme mb-14">
             <Link
