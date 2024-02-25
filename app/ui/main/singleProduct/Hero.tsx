@@ -1,5 +1,6 @@
 import PostImage from "@/app/components/PostImage";
 import Ratings from "@/app/components/Ratings";
+import AddReviewButton from "@/app/components/main/AddReviewButton";
 import FavoriteButton from "@/app/components/main/FavoriteButton";
 import { HeartIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
 import {
@@ -35,17 +36,13 @@ export default async function Hero({ data }: any) {
       </div>
       <div className="flex flex-col items-center justify-evenly h-[350px] w-[500px]">
         <div className="flex flex-col items-center">
-          <div className="text-black text-4xl mb-2 text-center">
+          <div className="text-black text-4xl mb-3 text-center">
             {data.title}
           </div>
           <Ratings />
-          <div className="text-[#888] text-lg mt-4 text-center flex gap-3">
+          <div className="text-[#888] text-lg mt-3 text-center flex gap-3">
             <FavoriteButton id={data._id} />
-            <div className="group cursor-pointer flex items-center gap-1 select-none">
-              <PlusCircleIcon className="w-9 group-hover:hidden" />
-              <PlusCircleIconActive className="w-9 hidden group-hover:block text-pageTheme" />
-              <div className="group-hover:text-pageTheme">Add review</div>
-            </div>
+            <AddReviewButton />
           </div>
         </div>
         <div className="flex flex-col mt-2 items-center gap-1.5 w-[100%]">

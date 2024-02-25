@@ -24,12 +24,29 @@ export default async function page({
       return null;
     }
   }
+
+  async function getReviews() {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_WEB_URL}/api/get-reviews?postId=${id}`,
+        { cache: "no-store" }
+      );
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await res.json();
+      return data;
+    } catch (error: any) {
+      return null;
+    }
+  }
   const data = await getData();
+  const reviews = await getReviews();
   return (
     <main>
       <Hero data={data} />
       <Details data={data} />
-      <Review />
+      <Review data={reviews} />
     </main>
   );
 }

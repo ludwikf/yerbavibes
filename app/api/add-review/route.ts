@@ -2,17 +2,20 @@ import { NextResponse } from "next/server";
 import Review from "@/models/Review";
 import connectMongoDB from "@/libs/mongodb";
 import Log from "@/models/Log";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/libs/authOptions";
 
 export const POST = async (req: any) => {
   try {
-    const { post, user, rating, comment, session } = await req.json();
+    const session: any = await getServerSession(authOptions);
+    const { post, rating, description } = await req.json();
+    const user = session.user._id;
     await connectMongoDB();
-
     const existingReview = await Review.findOne({ post: post, user: user });
 
     if (existingReview) {
       existingReview.rating = rating;
-      existingReview.comment = comment;
+      existingReview.comment = description;
 
       const savedReview = await existingReview.save();
 
@@ -38,7 +41,7 @@ export const POST = async (req: any) => {
         post: post,
         user: user,
         rating: rating,
-        comment: comment,
+        comment: description,
       });
 
       const savedReview = await newReview.save();

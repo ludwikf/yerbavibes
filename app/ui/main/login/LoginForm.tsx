@@ -1,17 +1,12 @@
 "use client";
 import React, { signIn, useSession } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ButtonSpinner } from "@/app/components/LoadingSpinner";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCode } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 export default function LoginForm() {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
   const [error, setError] = useState("");
-  const { status: sessionStatus, data: session }: any = useSession();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
