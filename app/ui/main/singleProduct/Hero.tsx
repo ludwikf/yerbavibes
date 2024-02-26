@@ -1,16 +1,25 @@
 import PostImage from "@/app/components/PostImage";
+import RatingStars from "@/app/components/RatingStars";
 import Ratings from "@/app/components/Ratings";
 import AddReviewButton from "@/app/components/main/AddReviewButton";
 import FavoriteButton from "@/app/components/main/FavoriteButton";
-import { HeartIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
-import {
-  HeartIcon as HeartIconActive,
-  PlusCircleIcon as PlusCircleIconActive,
-} from "@heroicons/react/24/solid";
 import Link from "next/link";
 import React from "react";
 
-export default async function Hero({ data }: any) {
+export default async function Hero({
+  data,
+  review,
+}: {
+  data: any;
+  review: any;
+}) {
+  const totalRating = review.reduce(
+    (acc: any, review: any) => acc + review.rating,
+    0
+  );
+  const averageRating = totalRating / review.length;
+  const rating = averageRating.toFixed(1);
+
   async function fetchData() {
     try {
       const res = await fetch(
@@ -39,7 +48,10 @@ export default async function Hero({ data }: any) {
           <div className="text-black text-4xl mb-3 text-center">
             {data.title}
           </div>
-          <Ratings />
+          <div className="text-center flex items-center gap-1.5">
+            <RatingStars rating={rating} w={7} />
+            <div className="text-xl text-[#888]">({review.length})</div>
+          </div>
           <div className="text-[#888] text-lg mt-3 text-center flex gap-3">
             <FavoriteButton id={data._id} />
             <AddReviewButton />

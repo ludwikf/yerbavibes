@@ -1,5 +1,23 @@
+import { StarIcon } from "@heroicons/react/24/solid";
+
 const shimmer =
   "before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent";
+
+export function StarSkeleton({ w }: any) {
+  return (
+    <div className="flex">
+      <div
+        className={`${shimmer} relative flex overflow-hidden shadow-sm rounded-full`}
+      >
+        <StarIcon className={`w-${w} text-[#00000020]`} />
+        <StarIcon className={`w-${w} text-[#00000020]`} />
+        <StarIcon className={`w-${w} text-[#00000020]`} />
+        <StarIcon className={`w-${w} text-[#00000020]`} />
+        <StarIcon className={`w-${w} text-[#00000020]`} />
+      </div>
+    </div>
+  );
+}
 
 export function ProductDetailsPage() {
   return (

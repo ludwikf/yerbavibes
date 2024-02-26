@@ -4,6 +4,7 @@ import connectMongoDB from "@/libs/mongodb";
 import Log from "@/models/Log";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/authOptions";
+import Vote from "@/models/Vote";
 
 export const POST = async (req: any) => {
   try {
@@ -22,6 +23,8 @@ export const POST = async (req: any) => {
       if (!savedReview) {
         return new NextResponse("Error saving review", { status: 400 });
       }
+
+      await Vote.deleteMany({ review: existingReview._id });
 
       const newLog = new Log({
         user: {

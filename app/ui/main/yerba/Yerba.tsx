@@ -6,8 +6,10 @@ import PaginationControls from "@/app/components/main/PaginationControls";
 import { HeartIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 import Filter from "./Filter";
+import YerbaListRating from "./YerbaListRating";
+import { StarSkeleton } from "@/app/components/Skeletons";
 
 export default async function Yerba({
   page,
@@ -35,6 +37,7 @@ export default async function Yerba({
       return null;
     }
   }
+
   const data = await fetchData();
   let filteredData: any = [...data];
   if (producer !== "") {
@@ -118,8 +121,10 @@ export default async function Yerba({
                 <div className="p-5">
                   <Link href={`/yerba/details?id=${e._id}`}>{e.title}</Link>
                   <div>
-                    <div className="w-[100px] my-1">
-                      <Ratings />
+                    <div className="my-1">
+                      <Suspense fallback={<StarSkeleton w={5} />}>
+                        <YerbaListRating data={e} />
+                      </Suspense>
                     </div>
                   </div>
                   <div className="text-sm">
