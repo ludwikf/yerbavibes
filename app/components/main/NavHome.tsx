@@ -50,9 +50,21 @@ export default async function NavHome() {
         )}
         {session ? (
           <>
-            <Link href={"/user/settings"} className="flex items-center gap-1">
+            <Link href={"/user/settings"} className="flex items-center gap-1.5">
               {session.user.username}
-              <UserCircleIcon className="w-9 text-[#888]" />
+              <div>
+                {session?.user?.avatar ? (
+                  <div className="w-9 h-9 relative rounded-full overflow-hidden">
+                    <img
+                      src={session?.user?.avatar}
+                      alt="avatar"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <UserCircleIcon className="w-9" />
+                )}
+              </div>
             </Link>
             <span className="text-[#888]">|</span>
             <Logout />

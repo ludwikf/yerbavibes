@@ -15,10 +15,12 @@ export default async function page({
   const category = searchParams["category"] ?? "";
   const origin = searchParams["origin"] ?? "";
   const tags = searchParams["tags"] ?? "";
+  const title = searchParams["title"] ?? "";
+  const sort = searchParams["sort"] ?? "";
 
   return (
     <div>
-      <div className="min-h-screen flex justify-between pt-[130px]">
+      <div className="min-h-screen flex justify-between pt-[110px]">
         <Suspense fallback={<ProductSkeleton />}>
           <Yerba
             page={page}
@@ -29,6 +31,8 @@ export default async function page({
             category={category}
             origin={origin}
             tags={tags}
+            title={title}
+            sort={sort}
           />
         </Suspense>
       </div>

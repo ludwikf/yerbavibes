@@ -20,6 +20,8 @@ export default async function Yerba({
   category,
   origin,
   tags,
+  title,
+  sort,
 }: any) {
   async function fetchData() {
     try {
@@ -64,6 +66,24 @@ export default async function Yerba({
     filteredData = filteredData.filter((e: any) => e.tags.includes(tags));
   }
 
+  if (title !== "") {
+    filteredData = filteredData.filter((e: any) =>
+      e.title.toLowerCase().includes(title.toLowerCase())
+    );
+  }
+
+  if (sort !== "") {
+    if (sort === "popular") {
+      filteredData.sort((a: any, b: any) => b.ratingCount - a.ratingCount);
+    }
+    if (sort === "top") {
+      filteredData.sort((a: any, b: any) => b.ratingValue - a.ratingValue);
+    }
+    if (sort === "low") {
+      filteredData.sort((a: any, b: any) => a.ratingValue - b.ratingValue);
+    }
+  }
+
   let dataCount = filteredData.length;
 
   const start = (Number(page) - 1) * Number(per_page);
@@ -90,6 +110,7 @@ export default async function Yerba({
                 category,
                 origin,
                 tags,
+                sort,
               }}
             />
           </div>

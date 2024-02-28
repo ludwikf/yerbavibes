@@ -30,8 +30,13 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    rating: {
+    ratingValue: {
       type: Number,
+      default: 0,
+    },
+    ratingCount: {
+      type: Number,
+      default: 0,
     },
     tags: {
       type: [String],

@@ -1,4 +1,5 @@
 import UserNavbar from "@/app/ui/main/user/UserNavbar";
+import AvatarEdit from "@/app/ui/main/user/settings/AvatarEdit";
 import DeleteUser from "@/app/ui/main/user/settings/DeleteUser";
 import PasswordEdit from "@/app/ui/main/user/settings/PasswordEdit";
 import UsernameEdit from "@/app/ui/main/user/settings/UsernameEdit";
@@ -9,11 +10,14 @@ import React from "react";
 export default async function page() {
   const session: any = await getServerSession(authOptions);
   return (
-    <div className="h-screen flex justify-center">
+    <div className="min-h-screen flex justify-center mb-10">
       <div className="flex w-[80%] h-[440px] justify-center mt-[130px] ">
         <UserNavbar />
         <div className="w-[60%] pl-10 py-1">
-          <div className="text-3xl mb-7">Account settings</div>
+          <div className="text-3xl mb-5">Account settings</div>
+          <div className="mb-5">
+            <AvatarEdit />
+          </div>
           <div className="w-3/4">
             <div className="text-2xl mb-7">Details</div>
             <div>

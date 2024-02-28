@@ -1,5 +1,5 @@
-import { poorStory } from "@/app/components/fonts";
-import Searchbar from "@/app/components/main/Searchbar";
+import SearchbarHome from "@/app/components/main/SearchbarHome";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import React from "react";
 
@@ -43,7 +43,7 @@ export default function Hero() {
           <div className="text-pageTheme">Yerba Mate</div>
         </div>
         <div className="mt-5">
-          <Searchbar />
+          <SearchbarHome />
         </div>
       </div>
     </div>

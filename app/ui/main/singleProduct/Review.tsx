@@ -17,7 +17,7 @@ export default function Review({ data }: any) {
       0
     );
     const averageRating = totalRating / data.length;
-    rating = averageRating.toFixed(1);
+    rating = averageRating.toFixed(2);
   }
 
   const ratingCounts: any = {

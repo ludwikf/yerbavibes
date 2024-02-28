@@ -5,6 +5,7 @@ import Log from "@/models/Log";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/authOptions";
 import Vote from "@/models/Vote";
+import Post from "@/models/Post";
 
 export const POST = async (req: any) => {
   try {
@@ -13,6 +14,11 @@ export const POST = async (req: any) => {
     const user = session.user._id;
     await connectMongoDB();
     const existingReview = await Review.findOne({ post: post, user: user });
+
+    const existingPost = await Post.findById(post);
+    if (!existingPost) {
+      return new NextResponse("Post not found", { status: 404 });
+    }
 
     if (existingReview) {
       existingReview.rating = rating;
@@ -52,6 +58,14 @@ export const POST = async (req: any) => {
       if (!savedReview) {
         return new NextResponse("Error saving review", { status: 400 });
       }
+
+      const newRatingValue =
+        (existingPost.ratingValue * existingPost.ratingCount + rating) /
+        (existingPost.ratingCount + 1);
+      existingPost.ratingValue = newRatingValue;
+      existingPost.ratingCount++;
+
+      await existingPost.save();
 
       const newLog = new Log({
         user: {

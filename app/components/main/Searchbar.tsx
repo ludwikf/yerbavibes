@@ -1,27 +1,41 @@
+"use client";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import React from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
 
 export default function Searchbar() {
-  return (
-    <div>
-      <form>
-        <div className="relative rounded-lg">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <MagnifyingGlassIcon className="w-5" />
-          </div>
+  const [searchQuery, setSearchQuery] = useState("");
+  const router: any = useRouter();
 
+  const path = usePathname();
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    router.push(`/yerba?title=${searchQuery}`);
+  };
+
+  useEffect(() => {
+    setSearchQuery("");
+  }, [path]);
+
+  return (
+    <div className="w-[100%]">
+      <form onSubmit={handleSubmit}>
+        <div className="rounded-lg flex">
           <input
             type="search"
             id="default-search"
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border-2 border-gray-300 rounded-lg bg-gray-50 focus:outline-none  focus:ring-pageTheme focus:border-pageTheme focus:shadow-lg"
+            name="search"
+            onChange={(e) => setSearchQuery(e.target.value)}
+            value={searchQuery}
+            className="block w-full p-2 ps-4 text-sm text-gray-900 border-l-2 border-t-2 border-b-2 border-[#ccc] rounded-l-lg bg-bodyTheme focus:outline-none  focus:ring-pageTheme focus:border-pageTheme focus:shadow-lg placeholder:text-[#666]"
             placeholder="Search for Yerba Mate products"
-            required
           />
           <button
             type="submit"
-            className={`text-white absolute end-2.5 bottom-2.5 bg-pageTheme hover:brightness-[90%] transition focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 `}
+            className={`text-white bg-pageTheme hover:brightness-[90%] transition focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-r-lg text-sm px-4 py-2 `}
           >
-            Search
+            <MagnifyingGlassIcon className="w-6" />
           </button>
         </div>
       </form>

@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "user"],
       default: "user",
     },
+    avatar: String,
     favorites: {
       items: [
         {

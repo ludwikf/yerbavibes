@@ -8,6 +8,7 @@ import { authOptions } from "@/libs/authOptions";
 import { getServerSession } from "next-auth";
 import Logout from "../Logout";
 import { UserCircleIcon } from "@heroicons/react/16/solid";
+import Searchbar from "./Searchbar";
 
 export default async function Navbar() {
   const session: any = await getServerSession(authOptions);
@@ -28,25 +29,7 @@ export default async function Navbar() {
         </ul>
       </Link>
       <ul className="flex items-center w-[30%] text-[#222] ml-48 mr-5">
-        <div className="w-[100%]">
-          <form>
-            <div className="rounded-lg flex">
-              <input
-                type="search"
-                id="default-search"
-                className="block w-full p-2 ps-4 text-sm text-gray-900 border-l-2 border-t-2 border-b-2 border-[#ccc] rounded-l-lg bg-bodyTheme focus:outline-none  focus:ring-pageTheme focus:border-pageTheme focus:shadow-lg placeholder:text-[#666]"
-                placeholder="Search for Yerba Mate products"
-                required
-              />
-              <button
-                type="submit"
-                className={`text-white bg-pageTheme hover:brightness-[90%] transition focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-r-lg text-sm px-4 py-2 `}
-              >
-                <MagnifyingGlassIcon className="w-6" />
-              </button>
-            </div>
-          </form>
-        </div>
+        <Searchbar />
       </ul>
       <ul className="flex items-center justify-center gap-6">
         <Link href={"/yerba"} className="cursor-pointer hover:text-pageTheme">
@@ -69,9 +52,30 @@ export default async function Navbar() {
         )}
         {session ? (
           <>
-            <Link href={"/user/settings"} className="flex items-center gap-1">
+            <Link href={"/user/settings"} className="flex items-center gap-1.5">
               {session.user.username}
-              <UserCircleIcon className="w-9 text-[#888]" />
+              <div>
+                {session?.user?.avatar ? (
+                  <div
+                    className="relative"
+                    style={{
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "50%",
+                    }}
+                  >
+                    <Image
+                      src={session?.user?.avatar}
+                      alt="avatar"
+                      fill
+                      sizes="100vh"
+                      className="rounded-full absolute object-cover"
+                    />
+                  </div>
+                ) : (
+                  <UserCircleIcon className="w-9 text-[#888]" />
+                )}
+              </div>
             </Link>
             <span className="text-[#888]">|</span>
             <Logout />
