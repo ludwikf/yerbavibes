@@ -1,5 +1,6 @@
 import connectMongoDB from "@/libs/mongodb";
 import Log from "@/models/Log";
+import Post from "@/models/Post";
 import Review from "@/models/Review";
 import { NextResponse } from "next/server";
 
@@ -11,22 +12,25 @@ export const DELETE = async (req: any) => {
     await connectMongoDB();
 
     const deletedReview = await Review.findByIdAndDelete(reviewId);
+
     if (!deletedReview) {
       return new NextResponse("Review is already deleted", { status: 400 });
     }
+    const associatedPost = await Post.findById(deletedReview.post);
 
-    const newLog = new Log({
-      user: {
-        id: session.user._id,
-        email: session.user.email,
-        username: session.user.username,
-      },
-      actionType: "Other",
-      details: "Review deleted",
-    });
-
-    await newLog.save();
-
+    if (associatedPost) {
+      associatedPost.ratingCount -= 1;
+      if (associatedPost.ratingCount <= 0) {
+        associatedPost.ratingValue = 0;
+        associatedPost.ratingCount = 0;
+      } else {
+        associatedPost.ratingValue =
+          (associatedPost.ratingValue * (associatedPost.ratingCount + 1) -
+            deletedReview.rating) /
+          associatedPost.ratingCount;
+      }
+      await associatedPost.save();
+    }
     return new NextResponse("Review deleted", { status: 200 });
   } catch (error: any) {
     return new NextResponse(error, { status: 500 });

@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconActive } from "@heroicons/react/24/solid";
 import { useSession } from "next-auth/react";
+import Popup from "../Popup";
 
 export default function FavoriteButton({ id }: any) {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [popup, setPopup] = useState(false);
   const { data: session }: any = useSession();
   const addFavorite = async () => {
     try {
@@ -22,7 +24,8 @@ export default function FavoriteButton({ id }: any) {
       if (!res.ok) {
         throw new Error("Failed to fetch data");
       }
-      return setIsFavorite(true);
+      setIsFavorite(true);
+      setPopup(true);
     } catch (error) {
       return null;
     }
@@ -42,6 +45,7 @@ export default function FavoriteButton({ id }: any) {
       if (!res.ok) {
         throw new Error("Failed to fetch data");
       }
+
       return setIsFavorite(false);
     } catch (error) {
       return null;
@@ -74,21 +78,29 @@ export default function FavoriteButton({ id }: any) {
     }
   }, [session, id]);
   return (
-    <div className="group/fav cursor-pointer">
-      {isFavorite ? (
-        <HeartIconActive
-          onClick={deleteFavorite}
-          className="w-9 text-pageTheme"
-        />
-      ) : (
-        <>
-          <HeartIcon className="w-9 group-hover/fav:hidden" />
+    <>
+      <div className="group/fav cursor-pointer">
+        {isFavorite ? (
           <HeartIconActive
-            onClick={addFavorite}
-            className="w-9 hidden group-hover/fav:block text-pageTheme"
+            onClick={deleteFavorite}
+            className="w-9 text-pageTheme"
           />
-        </>
+        ) : (
+          <>
+            <HeartIcon className="w-9 group-hover/fav:hidden" />
+            <HeartIconActive
+              onClick={addFavorite}
+              className="w-9 hidden group-hover/fav:block text-pageTheme"
+            />
+          </>
+        )}
+      </div>
+      {popup && (
+        <Popup
+          message={"Yerba added to favorite list"}
+          onClose={() => setPopup(false)}
+        />
       )}
-    </div>
+    </>
   );
 }

@@ -1,13 +1,21 @@
 "use client";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
-export default function DropSelect() {
+interface DropSelectProps {
+  filters: Record<string, string>;
+}
+
+export default function DropSelect({ filters }: DropSelectProps) {
   const [drop, setDrop] = useState(false);
   const [sort, setSort] = useState("");
   const dropRef = useRef<any>(null);
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const page = searchParams.get("page") ?? "1";
+  const per_page = searchParams.get("per_page") ?? "24";
 
   const sortOptions: { [key: string]: string } = {
     popular: "Most popular",
@@ -30,7 +38,25 @@ export default function DropSelect() {
   }, []);
 
   useEffect(() => {
-    router.push(`/yerba?sort=${sort}`);
+    const sortParam = searchParams.get("sort");
+    if (sortParam) {
+      setSort(sortParam);
+    } else {
+      setSort("");
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (sort !== "") {
+      const params = new URLSearchParams();
+      for (const [key, value] of Object.entries(filters)) {
+        if (value !== "") {
+          params.set(key, value);
+        }
+      }
+      params.set("sort", String(sort));
+      router.push(`/yerba/?${params.toString()}`);
+    }
   }, [sort]);
 
   return (

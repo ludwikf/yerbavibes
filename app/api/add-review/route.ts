@@ -21,6 +21,7 @@ export const POST = async (req: any) => {
     }
 
     if (existingReview) {
+      const oldRating = existingReview.rating;
       existingReview.rating = rating;
       existingReview.comment = description;
 
@@ -29,6 +30,16 @@ export const POST = async (req: any) => {
       if (!savedReview) {
         return new NextResponse("Error saving review", { status: 400 });
       }
+
+      const allReviewsForPost = await Review.find({ post: post });
+      const totalRating = allReviewsForPost.reduce(
+        (acc, review) => acc + review.rating,
+        0
+      );
+      const newRatingValue = totalRating / allReviewsForPost.length;
+      existingPost.ratingValue = newRatingValue;
+
+      await existingPost.save();
 
       await Vote.deleteMany({ review: existingReview._id });
 

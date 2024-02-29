@@ -98,7 +98,18 @@ export default async function Yerba({
         <div className="w-[98%] px-2 py-4 border-y-[1px] border-[#ccc] mb-5 flex justify-between items-center">
           <div className="text-[#888] text-sm">{dataCount} results</div>
           <div className="flex gap-5">
-            <DropSelect />
+            <DropSelect
+              filters={{
+                producer,
+                flavor,
+                strength,
+                category,
+                origin,
+                tags,
+                title,
+                sort,
+              }}
+            />
             <PaginationControls
               hasNextPage={end < dataCount}
               hasPrevPage={start > 0}
@@ -110,6 +121,7 @@ export default async function Yerba({
                 category,
                 origin,
                 tags,
+                title,
                 sort,
               }}
             />
