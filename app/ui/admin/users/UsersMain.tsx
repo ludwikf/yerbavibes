@@ -34,7 +34,7 @@ export default function UsersMain() {
   const fetchUsers = async (page: number) => {
     setIsLoading(true);
     try {
-      const res = await fetch(`/api/get-users?page=${page}`);
+      const res = await fetch(`/api/admin/get-users?page=${page}`);
 
       if (!res.ok) {
         throw new Error("Error fetching posts");

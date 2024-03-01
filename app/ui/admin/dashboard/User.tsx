@@ -5,7 +5,7 @@ import React from "react";
 async function fetchUser() {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_WEB_URL}/api/get-user-new`
+      `${process.env.NEXT_PUBLIC_WEB_URL}/api/admin/get-user-new`
     );
 
     if (!res.ok) {

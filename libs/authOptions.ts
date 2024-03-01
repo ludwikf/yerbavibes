@@ -35,8 +35,12 @@ export const authOptions: AuthOptions = {
               credentials.password,
               user.password
             );
+
             if (isPasswordCorrect) {
-              return user;
+              return {
+                ...user.toObject(),
+                role: user.role,
+              };
             }
           }
         } catch (error: any) {
@@ -60,6 +64,14 @@ export const authOptions: AuthOptions = {
       }
 
       return session;
+    },
+    async jwt({ token }) {
+      await connectMongoDB();
+      const user = await User.findOne({
+        email: token.email,
+      });
+      token.role = user.role;
+      return token;
     },
   },
 };

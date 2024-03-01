@@ -23,7 +23,6 @@ export default function Footer() {
     setError("");
     setPopup(true);
   };
-  console.log(error);
   return (
     <>
       {popup && (

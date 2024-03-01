@@ -1,12 +1,11 @@
 import SearchbarHome from "@/app/components/main/SearchbarHome";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import React from "react";
 
 export default function Hero() {
   return (
     <div className="max-w-screen h-screen bg-gradient-to-b from-[#ebe7d2] text-black flex justify-center items-center">
-      <div className="relative w-[340px] h-[360px] select-none">
+      <div className="relative w-[340px] h-[360px] select-none fade-in">
         <Image
           src={"/bg.png"}
           alt="yerba"
@@ -36,7 +35,7 @@ export default function Hero() {
           className="absolute rotate-[230deg] bottom-[-50px] left-[-50px] w-auto h-auto"
         />
       </div>
-      <div>
+      <div className="fade-in">
         <div className={`text-5xl w-[400px] text-center`}>
           <div className="text-pageTheme">Explore</div>
           <div className="text-[#666]">the world of</div>

@@ -4,12 +4,18 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconActive } from "@heroicons/react/24/solid";
 import { useSession } from "next-auth/react";
 import Popup from "../Popup";
+import Link from "next/link";
 
 export default function FavoriteButton({ id }: any) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [popup, setPopup] = useState(false);
-  const { data: session }: any = useSession();
+  const [loading, setLoading] = useState(false);
+  const { data: session, status }: any = useSession();
   const addFavorite = async () => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_WEB_URL}/api/add-favorite`,
@@ -28,9 +34,15 @@ export default function FavoriteButton({ id }: any) {
       setPopup(true);
     } catch (error) {
       return null;
+    } finally {
+      setLoading(false);
     }
   };
   const deleteFavorite = async () => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_WEB_URL}/api/delete-favorite?id=${id}`,
@@ -49,10 +61,13 @@ export default function FavoriteButton({ id }: any) {
       return setIsFavorite(false);
     } catch (error) {
       return null;
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
     const checkFavoriteStatus = async () => {
+      setLoading(true);
       try {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_WEB_URL}/api/check-favorite?id=${id}`,
@@ -71,30 +86,43 @@ export default function FavoriteButton({ id }: any) {
         setIsFavorite(data);
       } catch (error) {
         console.error("Error checking favorite status:", error);
+      } finally {
+        setLoading(false);
       }
     };
     if (session) {
       checkFavoriteStatus();
     }
   }, [session, id]);
+
+  if (status === "loading") return null;
   return (
     <>
-      <div className="group/fav cursor-pointer">
-        {isFavorite ? (
-          <HeartIconActive
-            onClick={deleteFavorite}
-            className="w-9 text-pageTheme"
-          />
-        ) : (
+      {session ? (
+        <div className="group/fav cursor-pointer">
+          {isFavorite ? (
+            <HeartIconActive
+              onClick={deleteFavorite}
+              className="w-9 text-pageTheme"
+            />
+          ) : (
+            <>
+              <HeartIcon className="w-9 group-hover/fav:hidden" />
+              <HeartIconActive
+                onClick={addFavorite}
+                className="w-9 hidden group-hover/fav:block text-pageTheme"
+              />
+            </>
+          )}
+        </div>
+      ) : (
+        <Link href={"/login"} className="group/fav cursor-pointer">
           <>
             <HeartIcon className="w-9 group-hover/fav:hidden" />
-            <HeartIconActive
-              onClick={addFavorite}
-              className="w-9 hidden group-hover/fav:block text-pageTheme"
-            />
+            <HeartIconActive className="w-9 hidden group-hover/fav:block text-pageTheme" />
           </>
-        )}
-      </div>
+        </Link>
+      )}
       {popup && (
         <Popup
           message={"Yerba added to favorite list"}
