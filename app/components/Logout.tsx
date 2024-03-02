@@ -18,8 +18,13 @@ export default function Logout() {
     }
   };
   return (
-    <button disabled={isSubmitting} onClick={handleLogout}>
-      <ArrowLeftStartOnRectangleIcon className="w-7 mr-5" />
+    <button
+      disabled={isSubmitting}
+      onClick={handleLogout}
+      className="w-full h-full focus:bg-[#00000010]"
+    >
+      <ArrowLeftStartOnRectangleIcon className="w-7 hidden lg:block" />
+      <div className="block lg:hidden">Sign out</div>
     </button>
   );
 }

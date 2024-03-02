@@ -28,14 +28,14 @@ export default function Searchbar() {
             name="search"
             onChange={(e) => setSearchQuery(e.target.value)}
             value={searchQuery}
-            className="block w-full p-2 ps-4 text-sm text-gray-900 border-l-2 border-t-2 border-b-2 border-[#ccc] rounded-l-lg bg-bodyTheme focus:outline-none  focus:ring-pageTheme focus:border-pageTheme focus:shadow-lg placeholder:text-[#666]"
+            className="block w-full p-2 ps-4 text-sm text-gray-900 border-l-2 border-t-2 border-b-2 border-[#ccc] rounded-l-lg bg-bodyTheme focus:outline-none  focus:ring-pageTheme focus:border-pageTheme focus:shadow-lg placeholder:text-[#666] placeholder:text-xs lg:placeholder:text-[14px] "
             placeholder="Search for Yerba Mate products"
           />
           <button
             type="submit"
-            className={`text-white bg-pageTheme hover:brightness-[90%] transition focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-r-lg text-sm px-4 py-2 `}
+            className={`text-white bg-pageTheme hover:brightness-[90%] transition focus:brightness-[80%] focus:outline-none font-medium rounded-r-lg px-2.5 text-sm lg:px-4 lg:py-2 `}
           >
-            <MagnifyingGlassIcon className="w-6" />
+            <MagnifyingGlassIcon className="w-5 lg:w-6" />
           </button>
         </div>
       </form>

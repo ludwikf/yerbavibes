@@ -103,6 +103,19 @@ body {
   }
 }
 
+@keyframes slideLeft {
+  from {
+    transform: translateX(0); /* Start from current position */
+  }
+  to {
+    transform: translateX(-110%); /* Slide to the left */
+  }
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.7s ease-out forwards;
+}
+
 .animate-slide-from-left {
   animation: slideFromLeft 0.7s ease-out forwards;
 }
