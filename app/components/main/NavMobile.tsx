@@ -15,10 +15,12 @@ import {
 } from "@heroicons/react/24/outline";
 import Logout from "../Logout";
 import { UserCircleIcon } from "@heroicons/react/16/solid";
+import { useSession } from "next-auth/react";
 
-export default function NavMobile({ session }: any) {
+export default function NavMobile({ search = true }: any) {
   const [menu, setMenu] = useState(false);
   const menuRef = useRef<any>(null);
+  const { data: session }: any = useSession();
 
   const handleClickOutside = (event: any) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -66,7 +68,7 @@ export default function NavMobile({ session }: any) {
               />
               <Link
                 href={"/"}
-                className={`text-2xl ${poorStory.className} brightness-[90%] font-bold`}
+                className={`text-xl xs:text-2xl flex items-center ${poorStory.className} brightness-[90%] font-bold`}
               >
                 YerbaVibes
               </Link>
@@ -146,8 +148,8 @@ export default function NavMobile({ session }: any) {
           </div>
         </>
       )}
-      <div className="flex w-full items-center justify-evenly">
-        <Link href={"/"} className="flex justify-start">
+      <div className="flex w-full items-center justify-between my-2">
+        <Link href={"/"} className="flex justify-start ml-4">
           <ul>
             <li className="text-xl flex items-center gap-1">
               <div className="w-[30x] h-[30px]">
@@ -161,13 +163,15 @@ export default function NavMobile({ session }: any) {
             </li>
           </ul>
         </Link>
-        <div>
+        <div className="mr-5">
           <Bars3Icon className="w-7" onClick={() => setMenu(true)} />
         </div>
       </div>
-      <div className="w-[85%] mt-2">
-        <Searchbar />
-      </div>
+      {search && (
+        <div className="w-[85%] mt-2">
+          <Searchbar />
+        </div>
+      )}
     </>
   );
 }

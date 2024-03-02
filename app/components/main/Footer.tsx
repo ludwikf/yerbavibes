@@ -31,15 +31,15 @@ export default function Footer() {
           onClose={() => setPopup(false)}
         />
       )}
-      <div className="max-w-screen h-[200px] bg-[#222] flex text-white justify-center">
-        <div className="w-1/6 flex flex-col justify-center items-center">
+      <div className="max-w-screen h-[400px] lg:h-[200px] bg-[#222] flex flex-col lg:flex-row text-white justify-evenly lg:justify-center">
+        <div className="min-w-[187px] lg:w-1/6 flex flex-col justify-center items-center">
           <div className={`${poorStory.className} text-4xl`}>YerbaVibes</div>
           <div className="text-xs">
             COPYRIGHT &copy; FSInnovations {new Date().getFullYear()}
           </div>
         </div>
-        <div className="w-1/6 flex flex-col justify-center items-center">
-          <div className="flex flex-col">
+        <div className="lg:w-1/6 flex flex-col justify-center items-center">
+          <div className="flex flex-col gap-3 lg:gap-0">
             <Link href={"/contact"} className="text-xl">
               CONTACT
             </Link>
@@ -51,11 +51,11 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <div className="w-1/4 flex flex-col justify-center items-center ml-10">
-          <div className={`${poorStory.className} text-4xl mb-3`}>
+        <div className="lg:w-[29%] flex flex-col justify-center items-center lg:items-start lg:ml-10">
+          <div className={`${poorStory.className} text-2xl xs:text-4xl mb-3`}>
             Sign up to newsletter
           </div>
-          <div className="w-full">
+          <div className="max-w-[400px] w-[90%] lg:w-full">
             <form onSubmit={handleSubmit}>
               <div className="flex">
                 <div className="relative w-full">

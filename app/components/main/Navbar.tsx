@@ -98,7 +98,7 @@ export default async function Navbar() {
         </ul>
       </div>
       <div className="lg:hidden absolute flex flex-col items-center w-full pt-1 z-10 select-none">
-        <NavMobile session={session} />
+        <NavMobile />
       </div>
     </>
   );
