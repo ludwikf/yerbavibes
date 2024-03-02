@@ -13,7 +13,7 @@ export default function page() {
           sensibly. This Privacy Notice describes how YerbaVibes collect and
           process your personal information through YerbaVibes websites,
           services, and applications that reference this Privacy Notice
-          (together the "YerbaVibes Services").
+          (together the &quot;YerbaVibes Services&quot;).
           <span className="font-bold">
             {" "}
             By using the YerbaVibes Services, you are consenting to the
@@ -42,10 +42,10 @@ export default function page() {
             types of information about your use of YerbaVibes Services,
             including information about your interaction with content and
             services available through YerbaVibes Services. Like many websites,
-            we use "cookies" and other unique identifiers, and we obtain certain
-            types of information when your web browser or device accesses
-            YerbaVibes Services and other content served by or on behalf of
-            YerbaVibes on other websites.
+            we use &quot;cookies&quot; and other unique identifiers, and we
+            obtain certain types of information when your web browser or device
+            accesses YerbaVibes Services and other content served by or on
+            behalf of YerbaVibes on other websites.
           </span>
           <span className="my-1">
             {" "}
@@ -110,9 +110,9 @@ export default function page() {
           </span>
           <span>
             We use cookies, pixels, and other technologies (collectively
-            "cookies") to recognize your browser or device, learn more about
-            your interests, and provide you with essential features and services
-            and for additional purposes, including:
+            &quot;cookies&quot;) to recognize your browser or device, learn more
+            about your interests, and provide you with essential features and
+            services and for additional purposes, including:
           </span>
           <div className="flex flex-col gap-1">
             <span>
@@ -128,7 +128,7 @@ export default function page() {
               settings.
             </span>
             <span>
-              Conducting research and diagnostics to improve YerbaVibes's
+              Conducting research and diagnostics to improve YerbaVibes&apos;s
               content and services.
             </span>
             <span>Preventing fraudulent activity.</span>
@@ -140,8 +140,8 @@ export default function page() {
             </span>
           </div>
           <span>
-            YerbaVibes's cookies allow you to take advantage of some of
-            YerbaVibes's essential features. For instance, if you block or
+            YerbaVibes&apos;s cookies allow you to take advantage of some of
+            YerbaVibes&apos;s essential features. For instance, if you block or
             otherwise reject our cookies, you will not be able to contribute
             content, review films, add items to your Watchlist, or use any
             YerbaVibes Services that require you to sign in.
@@ -163,7 +163,7 @@ export default function page() {
           </span>
           <span>
             Information about our users is an important part of our business,
-            and we are not in the business of selling our users' personal
+            and we are not in the business of selling our users&apos; personal
             information to others. We share user information with our parent
             corporation Netlify.com, the subsidiaries it controls that follow
             practices at least as protective as those described in this Privacy
@@ -290,10 +290,10 @@ export default function page() {
           <span>
             Most devices provide users with the ability to change device
             permissions (e.g., disable/access location services). For most
-            devices, these controls are located in the device's setting menu. If
-            you have questions about how to change your device permissions on
-            devices manufactured by third parties, we recommend you contact your
-            mobile service carrier or your device manufacturer.
+            devices, these controls are located in the device&apos;s setting
+            menu. If you have questions about how to change your device
+            permissions on devices manufactured by third parties, we recommend
+            you contact your mobile service carrier or your device manufacturer.
           </span>
           <span>
             If you want to browse our websites without linking the browsing

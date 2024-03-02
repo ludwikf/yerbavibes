@@ -10,8 +10,8 @@ export default function page() {
         </div>
         <div>
           Welcome to YerbaVibes. YerbaVibes.com and/or its affiliates
-          ("YerbaVibes") provide its website features and other services to you
-          subject to the following conditions.{" "}
+          (&quot;YerbaVibes&quot;) provide its website features and other
+          services to you subject to the following conditions.{" "}
           <span className="font-bold">
             If you visit YerbaVibes.com, use other YerbaVibes services,
             products, or use software or mobile applications provided by
@@ -75,14 +75,14 @@ export default function page() {
             are trademarks of YerbaVibes in the European and/or other countries.
             Other YerbaVibes graphics, logos, page headers, button icons,
             scripts, and service names are trademarks or trade dress of
-            YerbaVibes. YerbaVibes's trademarks and trade dress may not be used
-            in connection with any product or service that is not YerbaVibes's,
-            in any manner that is likely to cause confusion among customers, or
-            in any manner that disparages or discredits YerbaVibes. All other
-            trademarks not owned by YerbaVibes that appear on this site or in
-            any YerbaVibes Service are the property of their respective owners,
-            who may or may not be affiliated with, connected to, or sponsored by
-            YerbaVibes.
+            YerbaVibes. YerbaVibes&apos;s trademarks and trade dress may not be
+            used in connection with any product or service that is not
+            YerbaVibes&apos;s, in any manner that is likely to cause confusion
+            among customers, or in any manner that disparages or discredits
+            YerbaVibes. All other trademarks not owned by YerbaVibes that appear
+            on this site or in any YerbaVibes Service are the property of their
+            respective owners, who may or may not be affiliated with, connected
+            to, or sponsored by YerbaVibes.
           </span>
         </div>
         <div className="flex flex-col mt-4 gap-2">
@@ -120,10 +120,10 @@ export default function page() {
             written consent.
           </span>
           <span>
-            Meta Tags: You may not use any meta tags or any other "hidden text"
-            utilizing YerbaVibes's name or trademarks without the express
-            written consent of YerbaVibes. Any unauthorized use terminates the
-            permission or license granted by YerbaVibes.
+            Meta Tags: You may not use any meta tags or any other &quot;hidden
+            text&quot; utilizing YerbaVibes&apos;s name or trademarks without
+            the express written consent of YerbaVibes. Any unauthorized use
+            terminates the permission or license granted by YerbaVibes.
           </span>
         </div>
         <div className="mt-4 flex flex-col gap-2">
@@ -149,11 +149,11 @@ export default function page() {
             rights, or otherwise injurious to third parties or objectionable, is
             not created by generative AI, and does not consist of or contain
             software viruses, political campaigning, commercial solicitation,
-            chain letters, mass mailings, or any form of "spam." You may not use
-            a false e-mail address, impersonate any person or entity, or
-            otherwise mislead as to the origin of your content. YerbaVibes
-            reserves the right (but not the obligation) to remove or edit such
-            content, but does not regularly review posted content.
+            chain letters, mass mailings, or any form of &quot;spam.&quot; You
+            may not use a false e-mail address, impersonate any person or
+            entity, or otherwise mislead as to the origin of your content.
+            YerbaVibes reserves the right (but not the obligation) to remove or
+            edit such content, but does not regularly review posted content.
           </span>
           <span>
             Your License to YerbaVibes: If you do post content or submit
@@ -185,7 +185,7 @@ export default function page() {
           <span>
             YerbaVibes respects the intellectual property of others. If you
             believe that your work has been copied in a way that constitutes
-            copyright infringement, please provide within YerbaVibes's{" "}
+            copyright infringement, please provide within YerbaVibes&apos;s{" "}
             <Link href={"/contact"} className="text-pageTheme">
               Contact page
             </Link>{" "}
@@ -214,7 +214,7 @@ export default function page() {
           <span>
             A statement by you, made under penalty of perjury, that the above
             information in your notice is accurate and that you are the
-            copyright owner or authorized to act on the copyright owner's
+            copyright owner or authorized to act on the copyright owner&apos;s
             behalf.
           </span>
           <span>
@@ -230,16 +230,16 @@ export default function page() {
             THE YERBAVIBES SERVICES AND ALL INFORMATION, CONTENT, MATERIALS,
             PRODUCTS (INCLUDING SOFTWARE) AND OTHER SERVICES INCLUDED ON OR
             OTHERWISE MADE AVAILABLE TO YOU THROUGH THE YERBAVIBES SERVICES ARE
-            PROVIDED BY YERBAVIBES ON AN "AS IS" AND "AS AVAILABLE" BASIS.
-            YERBAVIBES MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND,
-            EXPRESS OR IMPLIED, AS TO THE OPERATION OF THE YERBAVIBES SERVICES
-            OR THE INFORMATION, CONTENT, MATERIALS, PRODUCTS (INCLUDING
-            SOFTWARE) OR OTHER SERVICES INCLUDED ON OR OTHERWISE MADE AVAILABLE
-            TO YOU THROUGH THE YERBAVIBES SERVICES. YOU EXPRESSLY AGREE THAT
-            YOUR USE OF THE YERBAVIBES SERVICES IS AT YOUR SOLE RISK. YERBAVIBES
-            RESERVES THE RIGHT TO WITHDRAW ANY YERBAVIBES SERVICE OR DELETE ANY
-            INFORMATION FROM THE YERBAVIBES SERVICES AT ANY TIME IN ITS
-            DISCRETION.
+            PROVIDED BY YERBAVIBES ON AN &quot;AS IS&quot; AND &quot;AS
+            AVAILABLE&quot; BASIS. YERBAVIBES MAKES NO REPRESENTATIONS OR
+            WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, AS TO THE OPERATION OF
+            THE YERBAVIBES SERVICES OR THE INFORMATION, CONTENT, MATERIALS,
+            PRODUCTS (INCLUDING SOFTWARE) OR OTHER SERVICES INCLUDED ON OR
+            OTHERWISE MADE AVAILABLE TO YOU THROUGH THE YERBAVIBES SERVICES. YOU
+            EXPRESSLY AGREE THAT YOUR USE OF THE YERBAVIBES SERVICES IS AT YOUR
+            SOLE RISK. YERBAVIBES RESERVES THE RIGHT TO WITHDRAW ANY YERBAVIBES
+            SERVICE OR DELETE ANY INFORMATION FROM THE YERBAVIBES SERVICES AT
+            ANY TIME IN ITS DISCRETION.
           </span>
 
           <span>

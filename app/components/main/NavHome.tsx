@@ -7,6 +7,7 @@ import { UserCircleIcon } from "@heroicons/react/16/solid";
 import Logout from "../Logout";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/authOptions";
+import Image from "next/image";
 
 export default async function NavHome() {
   const session: any = await getServerSession(authOptions);
@@ -54,11 +55,20 @@ export default async function NavHome() {
               {session.user.username}
               <div>
                 {session?.user?.avatar ? (
-                  <div className="w-9 h-9 relative rounded-full overflow-hidden">
-                    <img
+                  <div
+                    className="relative"
+                    style={{
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "50%",
+                    }}
+                  >
+                    <Image
                       src={session?.user?.avatar}
                       alt="avatar"
-                      className="absolute inset-0 w-full h-full object-cover"
+                      fill
+                      sizes="100vh"
+                      className="rounded-full absolute object-cover"
                     />
                   </div>
                 ) : (

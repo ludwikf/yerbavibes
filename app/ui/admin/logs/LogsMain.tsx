@@ -85,12 +85,14 @@ export default function LogsMain() {
       fetchHandler();
       setInitialFetchComplete(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (initialFetchComplete) {
       fetchHandler();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, initialFetchComplete]);
 
   useEffect(() => {

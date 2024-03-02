@@ -57,6 +57,7 @@ export default function DropSelect({ filters }: DropSelectProps) {
       params.set("sort", String(sort));
       router.push(`/yerba/?${params.toString()}`);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort]);
 
   return (

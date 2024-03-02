@@ -94,12 +94,14 @@ export default function ReviewsMain() {
       fetchHandler();
       setInitialFetchComplete(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (initialFetchComplete) {
       fetchHandler();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, initialFetchComplete]);
 
   return (

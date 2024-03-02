@@ -52,24 +52,23 @@ export default function EditTemplateMain() {
     }
   };
 
-  const fetchTemplateDetails = async () => {
-    if (!id) {
-      return router.push("/admin-cp/newsletter");
-    }
-    try {
-      const response = await fetch(`/api/single-template?id=${id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setTitle(data.title);
-        setSubject(data.subject);
-        setContent(data.content);
-      }
-    } catch (error: any) {
-      throw new Error(error);
-    }
-  };
-
   useEffect(() => {
+    const fetchTemplateDetails = async () => {
+      if (!id) {
+        return router.push("/admin-cp/newsletter");
+      }
+      try {
+        const response = await fetch(`/api/single-template?id=${id}`);
+        if (response.ok) {
+          const data = await response.json();
+          setTitle(data.title);
+          setSubject(data.subject);
+          setContent(data.content);
+        }
+      } catch (error: any) {
+        throw new Error(error);
+      }
+    };
     fetchTemplateDetails();
   }, []);
 

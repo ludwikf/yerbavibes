@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import {
   getStorage,
   ref,
@@ -72,6 +73,7 @@ export default function AvatarEdit() {
       }
     };
     upload();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
   useEffect(() => {
@@ -103,11 +105,20 @@ export default function AvatarEdit() {
     <div className="flex items-center">
       <div className="relative text-[#888]">
         {session?.user?.avatar ? (
-          <div className="w-36 h-36 relative rounded-full overflow-hidden">
-            <img
+          <div
+            className="relative"
+            style={{
+              width: "144px",
+              height: "144px",
+              borderRadius: "50%",
+            }}
+          >
+            <Image
               src={session?.user?.avatar}
               alt="avatar"
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              sizes="100vh"
+              className="rounded-full absolute object-cover"
             />
           </div>
         ) : (

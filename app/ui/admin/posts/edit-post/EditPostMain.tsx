@@ -96,30 +96,29 @@ export default function EditPostMain() {
     }
   };
 
-  const fetchPostDetails = async () => {
-    if (!id) {
-      return router.push("/admin-cp/posts");
-    }
-    try {
-      const response = await fetch(`/api/single-post?id=${id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setTitle(data.title);
-        setDetails(data.details);
-        setProducer(data.producer);
-        setCategory(data.category);
-        setStrength(data.strength);
-        setOrigin(data.origin);
-        setFlavor(data.flavor);
-        setTags(data.tags);
-        setMedia(data.image);
-      }
-    } catch (error: any) {
-      throw new Error(error);
-    }
-  };
-
   useEffect(() => {
+    const fetchPostDetails = async () => {
+      if (!id) {
+        return router.push("/admin-cp/posts");
+      }
+      try {
+        const response = await fetch(`/api/single-post?id=${id}`);
+        if (response.ok) {
+          const data = await response.json();
+          setTitle(data.title);
+          setDetails(data.details);
+          setProducer(data.producer);
+          setCategory(data.category);
+          setStrength(data.strength);
+          setOrigin(data.origin);
+          setFlavor(data.flavor);
+          setTags(data.tags);
+          setMedia(data.image);
+        }
+      } catch (error: any) {
+        throw new Error(error);
+      }
+    };
     fetchPostDetails();
   }, []);
 

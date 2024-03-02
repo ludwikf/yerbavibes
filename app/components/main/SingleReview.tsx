@@ -9,6 +9,7 @@ import Ratings from "../Ratings";
 import { useSession } from "next-auth/react";
 import RatingStars from "../RatingStars";
 import Popup from "../Popup";
+import Image from "next/image";
 
 export default function SingleReview({ data }: any) {
   const [popup, setPopup] = useState(false);
@@ -21,37 +22,6 @@ export default function SingleReview({ data }: any) {
   const dropRef = useRef<any>(null);
 
   const { data: session, status }: any = useSession();
-
-  const fetchVotes = async () => {
-    try {
-      const res = await fetch(`/api/get-votes?id=${data._id}`);
-
-      if (!res.ok) {
-        throw new Error("Response Error");
-      }
-      const resData = await res.json();
-      const upVotes = resData.votes.filter(
-        (vote: any) => vote.type === "up"
-      ).length;
-      const downVotes = resData.votes.filter(
-        (vote: any) => vote.type === "down"
-      ).length;
-
-      setUpVote(upVotes);
-      setDownVote(downVotes);
-
-      if (resData.userVoteType === "up") {
-        setIsUpvoted(true);
-      }
-      if (resData.userVoteType === "down") {
-        setIsDownvoted(true);
-      }
-    } catch (error) {
-      throw new Error("Error fetching votes");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleUpvote = async () => {
     setLoading(true);
@@ -159,7 +129,38 @@ export default function SingleReview({ data }: any) {
   };
 
   useEffect(() => {
+    const fetchVotes = async () => {
+      try {
+        const res = await fetch(`/api/get-votes?id=${data._id}`);
+
+        if (!res.ok) {
+          throw new Error("Response Error");
+        }
+        const resData = await res.json();
+        const upVotes = resData.votes.filter(
+          (vote: any) => vote.type === "up"
+        ).length;
+        const downVotes = resData.votes.filter(
+          (vote: any) => vote.type === "down"
+        ).length;
+
+        setUpVote(upVotes);
+        setDownVote(downVotes);
+
+        if (resData.userVoteType === "up") {
+          setIsUpvoted(true);
+        }
+        if (resData.userVoteType === "down") {
+          setIsDownvoted(true);
+        }
+      } catch (error) {
+        throw new Error("Error fetching votes");
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchVotes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -183,7 +184,7 @@ export default function SingleReview({ data }: any) {
   useEffect(() => {
     setUpVote(data.up);
     setDownVote(data.down);
-  }, []);
+  }, [data.up, data.down]);
 
   return (
     <>
@@ -197,11 +198,20 @@ export default function SingleReview({ data }: any) {
         <div className="flex items-center gap-3">
           <div>
             {data.user.avatar ? (
-              <div className="w-12 h-12 relative rounded-full overflow-hidden">
-                <img
+              <div
+                className="relative"
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "50%",
+                }}
+              >
+                <Image
                   src={data.user.avatar}
                   alt="avatar"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  fill
+                  sizes="100vh"
+                  className="rounded-full absolute object-cover"
                 />
               </div>
             ) : (
