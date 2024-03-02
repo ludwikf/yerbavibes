@@ -120,6 +120,7 @@ export default function EditPostMain() {
       }
     };
     fetchPostDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

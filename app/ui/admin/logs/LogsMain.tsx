@@ -16,7 +16,9 @@ export default function LogsMain() {
   const fetchData = async (pageNumber: number) => {
     setIsLoading(true);
     try {
-      const res = await fetch(`/api/admin/get-logs?page=${pageNumber}`);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_WEB_URL}/api/admin/get-logs?page=${pageNumber}`
+      );
 
       if (!res.ok) {
         throw new Error("Error fetching logs");
