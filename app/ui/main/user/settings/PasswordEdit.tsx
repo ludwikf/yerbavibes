@@ -1,15 +1,12 @@
 "use client";
 import { ButtonSpinner } from "@/app/components/LoadingSpinner";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
 export default function UsernameEdit() {
   const [form, setForm] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  const { data: session }: any = useSession();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -28,16 +25,19 @@ export default function UsernameEdit() {
     }
     try {
       setLoading(true);
-      const res = await fetch("/api/edit-password", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          currentPassword,
-          newPassword,
-        }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_WEB_URL}/api/edit-password`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            currentPassword,
+            newPassword,
+          }),
+        }
+      );
 
       if (!res.ok) {
         const errorMessage = await res.text();

@@ -17,7 +17,7 @@ export default async function page() {
       const data = await res.json();
       return data;
     } catch (error) {
-      throw new Error("Error fetching data");
+      return null;
     }
   }
   const data = await fetchData();

@@ -4,8 +4,6 @@ import Image from "next/image";
 import { poorStory } from "@/app/components/fonts";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
-import { height } from "@fortawesome/free-solid-svg-icons/fa0";
-import Ratings from "@/app/components/Ratings";
 
 export default function YomData({ data }: any) {
   const yerba = data[0];

@@ -5,7 +5,7 @@ import Popular from "../../ui/main/home/Popular";
 import NavHome from "../../components/main/NavHome";
 import { YomSkeleton } from "../../components/Skeletons";
 
-export default async function Page() {
+export default async function page() {
   return (
     <main className="overflow-hidden">
       <NavHome />
@@ -13,7 +13,9 @@ export default async function Page() {
       <Suspense fallback={<YomSkeleton />}>
         <Yom />
       </Suspense>
-      <Popular />
+      <Suspense fallback={<YomSkeleton />}>
+        <Popular />
+      </Suspense>
     </main>
   );
 }

@@ -80,15 +80,18 @@ export default function AvatarEdit() {
     const updateAvatar = async () => {
       if (media) {
         try {
-          const res = await fetch("/api/add-avatar", {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              media,
-            }),
-          });
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_WEB_URL}/api/add-avatar`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                media,
+              }),
+            }
+          );
           if (!res.ok) {
             throw new Error("Failed to update avatar");
           }

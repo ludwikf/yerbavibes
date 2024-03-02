@@ -1,9 +1,4 @@
-import {
-  CardSkeleton,
-  FavoriteSkeleton,
-  ProductSkeleton,
-  YomSkeleton,
-} from "@/app/components/Skeletons";
+import { FavoriteSkeleton } from "@/app/components/Skeletons";
 import React from "react";
 
 export default function loading() {

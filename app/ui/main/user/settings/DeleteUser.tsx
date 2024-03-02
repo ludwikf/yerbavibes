@@ -16,15 +16,18 @@ export default function UsernameEdit() {
     const password = e.target[0].value;
     try {
       setLoading(true);
-      const res = await fetch("/api/delete-user-form", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          password,
-        }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_WEB_URL}/api/delete-user-form`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            password,
+          }),
+        }
+      );
 
       if (!res.ok) {
         const errorMessage = await res.text();

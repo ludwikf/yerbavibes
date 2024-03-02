@@ -30,15 +30,18 @@ export default function UsernameEdit() {
     }
     try {
       setLoading(true);
-      const res = await fetch("/api/edit-username", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-        }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_WEB_URL}/api/edit-username`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+          }),
+        }
+      );
 
       if (!res.ok) {
         setError("An error occurred. Please try again.");
