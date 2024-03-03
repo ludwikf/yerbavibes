@@ -5,7 +5,7 @@ import React from "react";
 
 export default function Hero() {
   return (
-    <div className="max-w-screen h-[100dvh] bg-gradient-to-b from-[#ebe7d2] text-black flex justify-center items-center">
+    <div className="max-w-screen h-[100svh] bg-gradient-to-b from-[#ebe7d2] text-black flex justify-center items-center">
       <div className="fade-in flex justify-center relative min-w-[100%] md:min-w-[770px] h-[400px] md:h-[600px]">
         <div className="z-[9] bottom-[-70px] md:bottom-[-10px] absolute md:left-0 flex items-center justify-center w-[400px] md:w-[600px] h-[100%] select-none">
           <Image
