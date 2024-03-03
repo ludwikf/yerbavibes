@@ -12,15 +12,15 @@ export default function TopList({ data }: any) {
       <div className="w-full">
         {data &&
           data.map((e: any, index: any) => (
-            <div className="flex items-center justify-center lg:block">
+            <div
+              key={e._id}
+              className="flex items-center justify-center lg:block"
+            >
               <div className="lg:hidden text-2xl sm:ml-20 w-[70px] text-center">
                 {index + 1}
               </div>
 
-              <div
-                key={e._id}
-                className="flex flex-col w-screen lg:w-auto lg:flex-row justify-center lg:justify-start items-center h-[400px] xs:h-[330px] lg:h-[170px] mb-5 border-b-[1px] pb-5 border-[#ccc]"
-              >
+              <div className="flex flex-col w-screen lg:w-auto lg:flex-row justify-center lg:justify-start items-center h-[400px] xs:h-[330px] lg:h-[170px] mb-5 border-b-[1px] pb-5 border-[#ccc]">
                 <div className="hidden lg:block text-2xl w-[70px] text-center">
                   {index + 1}
                 </div>
