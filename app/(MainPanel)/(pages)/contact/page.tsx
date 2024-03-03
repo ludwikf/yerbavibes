@@ -29,7 +29,7 @@ const ContactPage = () => {
   };
   return (
     <div className="w-screen min-h-screen flex justify-center items-center">
-      <div className="w-[70%] h-[50%]">
+      <div className="w-[70%] h-[50%] mt-[60px]">
         <h1 className="text-3xl font-bold mb-4">Contact Us</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex flex-col">

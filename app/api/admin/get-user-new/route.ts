@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 
 export const GET = async () => {
   try {
+    console.log("xd");
     await connectMongoDB();
     const data = await User.find()
       .sort({ createdAt: -1 })

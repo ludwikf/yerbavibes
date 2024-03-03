@@ -1,25 +1,26 @@
+"use client";
 import FormatDate from "@/app/components/FormatDate";
 import { UserCircleIcon } from "@heroicons/react/20/solid";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-async function fetchUser() {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_WEB_URL}/api/admin/get-user-new`
-    );
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
+export default function User() {
+  const [user, setUser] = useState<any[]>([]);
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const res = await fetch(`/api/admin/get-user-new`);
+        if (!res.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const data = await res.json();
+        setUser(data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
     }
 
-    return res.json();
-  } catch (error) {
-    return null;
-  }
-}
-
-export default async function User() {
-  const user = await fetchUser();
+    fetchUser();
+  }, []);
   return (
     <div className="w-[80%] h-[70%] flex flex-col items-center">
       {user && user[0] && (
