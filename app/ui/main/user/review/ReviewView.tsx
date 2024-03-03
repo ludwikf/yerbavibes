@@ -53,29 +53,29 @@ export default function ReviewView() {
           {data.map((e: any) => (
             <div
               key={e._id}
-              className="flex items-center h-[170px] mb-5 border-b-[1px] pb-5 border-[#ccc]"
+              className="flex items-center h-[140px] md:h-[170px] mb-5 border-b-[1px] pb-5 border-[#ccc]"
             >
               <Link
                 href={`/yerba/details?id=${e.post._id}`}
-                className="min-w-[150px] h-[150px]"
+                className="hidden xs:block min-w-[90px] xs:min-w-[120px] md:min-w-[150px] h-[90px] xs:h-[120px] md:h-[150px]"
               >
                 <PostImage src={e.post.image} />
               </Link>
-              <div className="flex flex-col w-[60%] h-[100%] py-1 pl-5">
+              <div className="flex flex-col justify-between w-full md:w-[60%] h-[100%] py-1 pl-2 md:pl-5">
                 <div>
                   <div>
                     <RatingStars rating={e.rating} w={6} />
                   </div>
                   <Link
                     href={`/yerba/details?id=${e.post._id}`}
-                    className="ml-1 text-[#888]"
+                    className="ml-1 text-[#888] flex mt-1 lg:mt-0"
                   >
                     {e.post.title}
                   </Link>
                 </div>
-                <div className="ml-1 mt-4  overflow-hidden ">{e.comment}</div>
+                <div className="ml-1 mt-4 overflow-hidden ">{e.comment}</div>
               </div>
-              <div className="flex flex-col items-end h-[100%] pl-5">
+              <div className="flex flex-col items-end h-[100%]  lg:pl-5">
                 <button className="hover:bg-[#dcd8c5] p-1 rounded-xl">
                   <TrashIcon
                     onClick={() => deleteReview(e._id)}

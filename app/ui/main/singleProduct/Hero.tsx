@@ -43,7 +43,7 @@ export default async function Hero({
       <div className="xs:min-w-[300px] md:min-w-[400px] xs:h-[300px] md:h-[400px] animateZoomIn shadow-lg p-5 flex justify-center items-center">
         <PostImage src={`${data.image}`} />
       </div>
-      <div className="flex flex-col items-center mt-5 md:mt-0 md:ml-5 justify-evenly h-[350px] w-[100%] md:w-[500px]">
+      <div className="flex flex-col items-center mt-5 md:mt-0 md:ml-5 justify-evenly h-[350px] w-[90%] md:w-[500px]">
         <div className="flex flex-col items-center">
           <div className="text-black text-2xl md:text-4xl mb-3 text-center">
             {data.title}

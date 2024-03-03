@@ -30,14 +30,20 @@ export default async function Navbar() {
             </li>
           </ul>
         </Link>
-        <ul className="flex items-center w-[30%] text-[#222] ml-48 mr-5">
+        <ul className="flex items-center max-w-[600px] flex-grow text-[#222] mx-5">
           <Searchbar />
         </ul>
         <ul className="flex items-center justify-center gap-6">
-          <Link href={"/yerba"} className="cursor-pointer hover:text-pageTheme">
+          <Link
+            href={"/yerba"}
+            className="cursor-pointer hover:text-pageTheme min-w-[92px]"
+          >
             Yerba Mate
           </Link>
-          <Link href={"/top"} className="cursor-pointer hover:text-pageTheme">
+          <Link
+            href={"/top"}
+            className="cursor-pointer hover:text-pageTheme min-w-[82px]"
+          >
             Top Rated
           </Link>
           <Link

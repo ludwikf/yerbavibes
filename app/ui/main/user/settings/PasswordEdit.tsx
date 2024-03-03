@@ -74,7 +74,7 @@ export default function UsernameEdit() {
             }}
             className="z-30 absolute left-0 top-0 w-screen h-screen backdrop-blur-[2px] bg-[#0000001c]"
           ></div>
-          <div className="z-40 overflow-hidden w-[30%] min-h-[360px] bg-bodyTheme border-[1px] border-[#ccc] shadow-xl rounded-2xl flex flex-col">
+          <div className="z-40 overflow-hidden w-[90%] sm:w-[60%] lg:w-[30%] min-h-[360px] bg-bodyTheme border-[1px] border-[#ccc] shadow-xl rounded-2xl flex flex-col">
             <div className="w-full px-6 bg-[#0000000c] h-[60px] text-2xl font-bold flex items-center justify-between text-[#444]">
               <p>Change password</p>
               <button

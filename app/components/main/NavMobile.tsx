@@ -4,7 +4,11 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import PostImage from "../PostImage";
 import { poorStory } from "../fonts";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import {
+  Bars3Icon,
+  CodeBracketIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/solid";
 import Searchbar from "./Searchbar";
 import {
   Cog6ToothIcon,
@@ -146,6 +150,16 @@ export default function NavMobile({ search = true }: any) {
                       <Cog6ToothIcon className="w-7" />
                       Account settings
                     </Link>
+                    {session.user.role === "admin" && (
+                      <Link
+                        onClick={() => setMenu(false)}
+                        href={"/user/settings"}
+                        className="px-5 py-3 flex items-center gap-1.5 text-red-600"
+                      >
+                        <CodeBracketIcon className="w-7" />
+                        Admin Panel
+                      </Link>
+                    )}
                   </>
                 )}
               </div>

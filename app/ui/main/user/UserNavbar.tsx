@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
 export default function UserNavbar() {
   const pathName = usePathname();
   return (
-    <div className="mt-3 w-[18%] h-[400px] border-r-[1px] border-[#888] flex flex-col justify-start">
+    <div className="hidden md:flex mt-3 w-[18%] h-[400px] border-r-[1px] border-[#888] flex-col justify-start">
       <div className="px-3">Hello</div>
       <div className="px-3 font-bold text-lg mb-5">Ludwik</div>
       <ul className="w-full">

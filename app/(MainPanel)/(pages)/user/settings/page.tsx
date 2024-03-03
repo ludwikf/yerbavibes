@@ -11,9 +11,9 @@ export default async function page() {
   const session: any = await getServerSession(authOptions);
   return (
     <div className="min-h-screen flex justify-center mb-10">
-      <div className="flex w-[80%] h-[440px] justify-center mt-[130px] ">
+      <div className="flex w-full xs:w-[80%] min-h-[440px] justify-center mt-[130px] ">
         <UserNavbar />
-        <div className="w-[60%] pl-10 py-1">
+        <div className="w-full md:w-[60%] md:pl-10 py-1 flex flex-col items-center md:items-start">
           <div className="text-3xl mb-5">Account settings</div>
           <div className="mb-5">
             <AvatarEdit />

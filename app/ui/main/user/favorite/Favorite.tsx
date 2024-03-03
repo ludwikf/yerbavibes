@@ -53,27 +53,38 @@ export default function Favorite() {
           {data.map((e: any) => (
             <div
               key={e.productId._id}
-              className="flex items-center h-[170px] mb-5 border-b-[1px] pb-5 border-[#ccc]"
+              className="flex items-center h-[140px] md:h-[170px] mb-5 border-b-[1px] pb-5 border-[#ccc]"
             >
               <Link
                 href={`/yerba/details?id=${e.productId._id}`}
-                className="min-w-[150px] h-[150px]"
+                className="min-w-[90px] xs:min-w-[120px] md:min-w-[150px] h-[90px] xs:h-[120px] md:h-[150px]"
               >
                 <PostImage src={`${e.productId.image}`} />
               </Link>
-              <div className="flex flex-col justify-between w-[60%] h-[100%] py-1 pl-5">
+              <div className="flex flex-col justify-between w-full md:w-[60%] h-[100%] py-1 pl-2 md:pl-5">
                 <div>
                   <Link
                     href={`/yerba/details?id=${e.productId._id}`}
-                    className="font-bold text-lg"
+                    className="font-bold text-md md:text-lg"
                   >
                     {e.productId.title}
                   </Link>
-                  <div>{e.productId.category}</div>
+                  <div className="hidden md:block">{e.productId.category}</div>
                 </div>
-                <div>{e.productId.producer}</div>
+                <div className="flex items-center">
+                  <div className="hidden xs:block md:block text-xs md:text-[16px]">
+                    {e.productId.producer}
+                  </div>
+
+                  <button
+                    onClick={() => deleteFavorite(e.productId._id)}
+                    className="hover:bg-[#dcd8c5] p-1 rounded-xl lg:hidden"
+                  >
+                    <TrashIcon className="w-5" />
+                  </button>
+                </div>
               </div>
-              <div className="flex flex-col items-end h-[100%] pl-5">
+              <div className="hidden md:flex flex-col items-end h-[100%] pl-5">
                 <button
                   onClick={() => deleteFavorite(e.productId._id)}
                   className="hover:bg-[#dcd8c5] p-1 rounded-xl"
