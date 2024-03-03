@@ -16,17 +16,16 @@ export default function Popup({ message, type = "success", onClose }: any) {
   return (
     <>
       {isVisible && (
-        <div className="fixed w-screen z-[100] flex justify-center left-0 top-[30px]">
+        <div
+          className="fixed w-screen z-[500] flex justify-center left-0 top-[30px]"
+          onClick={() => setIsVisible(false)}
+        >
           <div
-            className={`popup flex items-center relative justify-center w-[40%] rounded-2xl shadow-lg opacity-[0.90] ${`bg-${
+            className={`popup flex items-center relative justify-center w-[90%] sm:w-[70%] lg:w-[40%] rounded-2xl shadow-lg opacity-[0.90] ${`bg-${
               type === "success" ? "pageTheme" : "red-500"
             }`} text-white py-3 text-center`}
           >
             <span>{message}</span>
-            <XMarkIcon
-              onClick={() => setIsVisible(false)}
-              className="w-7 absolute right-[15px] cursor-pointer"
-            />
           </div>
         </div>
       )}

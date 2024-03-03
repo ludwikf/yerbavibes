@@ -66,7 +66,7 @@ export default function DropSelect({ filters }: DropSelectProps) {
         setDrop(!drop);
       }}
       ref={dropRef}
-      className="relative w-[225px]"
+      className="relative w-[50%] max-w-[300px] lg:w-[225px]"
     >
       <div
         className={`${

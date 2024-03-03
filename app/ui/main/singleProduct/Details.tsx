@@ -4,13 +4,13 @@ import React from "react";
 export default function Details({ data }: any) {
   return (
     <div className="max-w-screen min-h-[90vh] flex justify-center items-start pb-10">
-      <div className="h-full w-[1000px] flex flex-col items-center">
+      <div className="h-full w-[90%] lg:w-[1000px] flex flex-col items-center">
         <div className="text-4xl border-l-[8px] pl-2 border-pageTheme w-full">
           Details
         </div>
         <div className="w-full mt-5 text-[#555]">{data.details}</div>
         <div className="w-full my-5 select-none">
-          <div>
+          <div className="hidden xs:block">
             {data.tags
               .filter((tag: any) => tag && tag.trim() !== "")
               .map((tag: any) => (

@@ -27,7 +27,7 @@ export default function Footer() {
     <>
       {popup && (
         <Popup
-          message={"You have signed up for newsletter!"}
+          message={"Signed up for newsletter!"}
           onClose={() => setPopup(false)}
         />
       )}

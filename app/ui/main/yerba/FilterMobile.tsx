@@ -1,10 +1,16 @@
 "use client";
+import {
+  AdjustmentsHorizontalIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/solid";
 import { CheckIcon } from "@heroicons/react/24/solid";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Filter({ data, filteredData }: any) {
   const [expandedFilters, setExpandedFilters] = React.useState<string[]>([]);
+  const [form, setForm] = useState<boolean>(false);
+  const dropRef = useRef<any>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryParams = Object.fromEntries(searchParams);
@@ -132,63 +138,99 @@ export default function Filter({ data, filteredData }: any) {
     );
   };
 
+  const handleClickOutside = (e: any) => {
+    if (dropRef.current && !dropRef.current.contains(e.target)) {
+      setForm(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <>
-      <div className="p-5 w-full flex justify-between items-center border-b-[1px] border-[#ccc]">
-        <span className=" text-2xl font-bold">Filters</span>
-        <button
-          onClick={() => router.push("/yerba")}
-          className={`text-sm text-${
-            queryParams.producer ||
-            queryParams.flavor ||
-            queryParams.strength ||
-            queryParams.category ||
-            queryParams.origin ||
-            queryParams.sort
-              ? "red-500"
-              : "[#bbb]"
-          } select-none`}
-        >
-          Clear all
-        </button>
-      </div>
-      <div className="w-full p-5">
-        <div className="flex flex-col mb-7">
-          <div className="font-bold mb-3">Producer</div>
-          {renderFilterOptions(
-            "producer",
-            producers,
-            producersCount,
-            producerQ
-          )}
-        </div>
-        <div className="flex flex-col mb-7">
-          <div className="font-bold mb-3">Flavor</div>
-          {renderFilterOptions("flavor", flavors, flavorsCount, flavorQ)}
-        </div>
-        <div className="flex flex-col mb-7">
-          <div className="font-bold mb-3">Strength</div>
-          {renderFilterOptions(
-            "strength",
-            strengths,
-            strengthsCount,
-            strengthQ
-          )}
-        </div>
-        <div className="flex flex-col mb-7">
-          <div className="font-bold mb-3">Category</div>
-          {renderFilterOptions(
-            "category",
-            categories,
-            categoriesCount,
-            categoryQ
-          )}
-        </div>
-        <div className="flex flex-col mb-7">
-          <div className="font-bold mb-3">Origin</div>
-          {renderFilterOptions("origin", origins, originsCount, originQ)}
-        </div>
-      </div>
-    </>
+    <div ref={dropRef}>
+      <AdjustmentsHorizontalIcon
+        className={`w-7 ${
+          queryParams.producer ||
+          queryParams.flavor ||
+          queryParams.strength ||
+          queryParams.category ||
+          queryParams.origin ||
+          queryParams.sort
+            ? "text-pageTheme"
+            : "text-[#888]"
+        } select-none`}
+        onClick={() => setForm(true)}
+      />
+      {form && (
+        <>
+          <div className="z-[400] w-full h-min-screen absolute top-0 left-0 bg-bodyTheme overflow-y-auto border-b-2 border-black">
+            <div className="p-5 flex justify-between items-center">
+              <span className=" text-2xl font-bold flex gap-1.5 items-center">
+                Filters
+                <XMarkIcon className="w-7" onClick={() => setForm(false)} />
+              </span>
+              <button
+                onClick={() => router.push("/yerba")}
+                className={`text-sm text-${
+                  queryParams.producer ||
+                  queryParams.flavor ||
+                  queryParams.strength ||
+                  queryParams.category ||
+                  queryParams.origin ||
+                  queryParams.sort
+                    ? "red-500"
+                    : "[#bbb]"
+                } select-none`}
+              >
+                Clear all
+              </button>
+            </div>
+            <div className="w-full p-5">
+              <div className="flex flex-col mb-7">
+                <div className="font-bold mb-3">Producer</div>
+                {renderFilterOptions(
+                  "producer",
+                  producers,
+                  producersCount,
+                  producerQ
+                )}
+              </div>
+              <div className="flex flex-col mb-7">
+                <div className="font-bold mb-3">Flavor</div>
+                {renderFilterOptions("flavor", flavors, flavorsCount, flavorQ)}
+              </div>
+              <div className="flex flex-col mb-7">
+                <div className="font-bold mb-3">Strength</div>
+                {renderFilterOptions(
+                  "strength",
+                  strengths,
+                  strengthsCount,
+                  strengthQ
+                )}
+              </div>
+              <div className="flex flex-col mb-7">
+                <div className="font-bold mb-3">Category</div>
+                {renderFilterOptions(
+                  "category",
+                  categories,
+                  categoriesCount,
+                  categoryQ
+                )}
+              </div>
+              <div className="flex flex-col mb-7">
+                <div className="font-bold mb-3">Origin</div>
+                {renderFilterOptions("origin", origins, originsCount, originQ)}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
   );
 }

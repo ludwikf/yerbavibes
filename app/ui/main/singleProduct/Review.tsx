@@ -36,22 +36,22 @@ export default function Review({ data }: any) {
   const reviewsToDisplay = reviewsWithComments.slice(0, 4);
 
   return (
-    <div className="max-w-screen min-h-[400px] flex justify-center items-start">
-      <div className="h-full w-[1000px] flex flex-col items-center">
+    <div className="max-w-[screen] min-h-[400px] flex justify-center items-start">
+      <div className="h-full w-[90%] lg:w-[1000px] flex flex-col items-center">
         <div className="text-4xl border-l-[8px] pl-2 border-pageTheme w-full">
           Reviews
         </div>
 
         <div className="w-full mt-5">
-          <div className="w-full flex">
+          <div className="w-full flex flex-col lg:flex-row">
             <div className="text-center">
               <div className="text-5xl">{rating}</div>
-              <div>
+              <div className="w-full flex justify-center">
                 <RatingStars rating={rating} w={7} />
               </div>
               <div className="pt-1 text-[#666]">{data.length} reviews</div>
             </div>
-            <div className="w-1/2 ml-8">
+            <div className="w-full lg:w-1/2 lg:ml-8">
               {[5, 4, 3, 2, 1].map((rating: any) => (
                 <div key={rating} className="flex justify-center items-center">
                   <div className="text-sm">{rating}</div>
@@ -68,12 +68,14 @@ export default function Review({ data }: any) {
             </div>
           </div>
         </div>
-        <div className="self-start">
+        <div className="self-center lg:self-start">
           <div className="flex  my-7">
             <AddReviewButton data={data} />
           </div>
           {reviewsToDisplay.map((e: any) => (
-            <SingleReview key={e._id} data={e} />
+            <div key={e._id} className="w-[90vw] lg:w-[650px]">
+              <SingleReview data={e} />
+            </div>
           ))}
           {reviewsWithComments.length > 4 && (
             <div className="text-lg text-pageTheme mb-14">

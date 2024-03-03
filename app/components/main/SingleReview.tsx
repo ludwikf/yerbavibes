@@ -189,12 +189,9 @@ export default function SingleReview({ data }: any) {
   return (
     <>
       {popup && (
-        <Popup
-          message={"Review flagged as inappropriate"}
-          onClose={() => setPopup(false)}
-        />
+        <Popup message={"Review flagged"} onClose={() => setPopup(false)} />
       )}
-      <div className="mb-14 relative w-[650px]">
+      <div className="mb-14 relative w-[100%]">
         <div className="flex items-center gap-3">
           <div>
             {data.user.avatar ? (

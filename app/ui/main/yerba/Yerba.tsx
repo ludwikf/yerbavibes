@@ -10,6 +10,7 @@ import React, { Suspense } from "react";
 import Filter from "./Filter";
 import YerbaListRating from "./YerbaListRating";
 import { StarSkeleton } from "@/app/components/Skeletons";
+import FilterMobile from "./FilterMobile";
 
 export default async function Yerba({
   page,
@@ -93,9 +94,11 @@ export default async function Yerba({
 
   return (
     <>
-      <Filter data={data} filteredData={filteredData} />
-      <div className="w-[100%] mr-20 mb-10 flex flex-col items-center">
-        <div className="w-[98%] px-2 py-4 border-y-[1px] border-[#ccc] mb-5 flex justify-between items-center">
+      <div className="hidden lg:flex select-none flex-col mx-7 justify-center items-center w-[400px] h-[70%] border-[1px] rounded-xl border-[#ccc]">
+        <Filter data={data} filteredData={filteredData} />
+      </div>
+      <div className="w-[100%] lg:mr-20 mb-10 flex flex-col items-center">
+        <div className="hidden lg:flex w-[98%] px-2 py-4 border-y-[1px] border-[#ccc] mb-5 justify-between items-center">
           <div className="text-[#888] text-sm">{dataCount} results</div>
           <div className="flex gap-5">
             <DropSelect
@@ -127,16 +130,49 @@ export default async function Yerba({
             />
           </div>
         </div>
-        <div className="w-[100%] flex flex-wrap gap-x-[20px] gap-y-[40px] justify-start">
+        <div className="lg:hidden flex justify-evenly items-center w-[100%] py-3 border-b-[1px] border-[#00000020]">
+          <div className="text-[#888] text-sm">{dataCount} results</div>
+          <PaginationControls
+            hasNextPage={end < dataCount}
+            hasPrevPage={start > 0}
+            totalPages={totalPages}
+            filters={{
+              producer,
+              flavor,
+              strength,
+              category,
+              origin,
+              tags,
+              title,
+              sort,
+            }}
+          />
+        </div>
+        <div className="lg:hidden flex justify-evenly items-center w-[100%] py-3 mb-3 border-b-[1px] border-[#00000020]">
+          <FilterMobile data={data} filteredData={filteredData} />
+          <DropSelect
+            filters={{
+              producer,
+              flavor,
+              strength,
+              category,
+              origin,
+              tags,
+              title,
+              sort,
+            }}
+          />
+        </div>
+        <div className="w-[100%] flex flex-col lg:flex-row lg:flex-wrap gap-x-[20px] gap-y-[40px] justify-start">
           {entries.map((e: any) => (
             <div
               key={e._id}
-              className="w-[30%] group hover:shadow-xl rounded-xl pb-5 px-2 border-b-[1px] border-[#ccc] transition"
+              className="w-[100%] lg:w-[30%] group hover:shadow-xl rounded-xl pb-5 px-2 border-b-[1px] border-[#ccc] transition"
             >
-              <div className="min-w-[100%] h-[0] relative pt-[100%]">
+              <div className="min-w-[100%] h-[200px] sm:h-[350px] lg:h-[0] relative lg:pt-[100%] flex justify-center">
                 <Link
                   href={`/yerba/details?id=${e._id}`}
-                  className="absolute top-0"
+                  className="absolute top-[50%] translate-y-[-50%]"
                 >
                   <Image
                     rel="stylesheet preload prefetch"
@@ -145,29 +181,31 @@ export default async function Yerba({
                     width={0}
                     height={0}
                     sizes="100vw"
-                    className={`rounded-xl object-cover object-left select-none w-[100%]`}
+                    className={`rounded-xl object-cover object-left select-none w-[100%] h-[200px] sm:h-[350px] lg:h-auto`}
                   />
                 </Link>
               </div>
 
               <div className="w-[100%] min-h-[216px] flex flex-col justify-between">
-                <div className="p-5">
-                  <Link href={`/yerba/details?id=${e._id}`}>{e.title}</Link>
+                <div className="p-5 flex flex-col items-center lg:items-start">
                   <div>
-                    <div className="my-1">
-                      <Suspense fallback={<StarSkeleton w={5} />}>
-                        <YerbaListRating data={e} />
-                      </Suspense>
+                    <Link href={`/yerba/details?id=${e._id}`}>{e.title}</Link>
+                    <div>
+                      <div className="my-1">
+                        <Suspense fallback={<StarSkeleton w={5} />}>
+                          <YerbaListRating data={e} />
+                        </Suspense>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-sm">
-                    Producer <span className="text-[#777]">{e.producer}</span>
-                  </div>
-                  <div className="text-sm">
-                    Flavor <span className="text-[#777]">{e.flavor}</span>
-                  </div>
-                  <div className="text-sm">
-                    Origin <span className="text-[#777]">{e.origin}</span>
+                    <div className="text-sm">
+                      Producer <span className="text-[#777]">{e.producer}</span>
+                    </div>
+                    <div className="text-sm">
+                      Flavor <span className="text-[#777]">{e.flavor}</span>
+                    </div>
+                    <div className="text-sm">
+                      Origin <span className="text-[#777]">{e.origin}</span>
+                    </div>
                   </div>
                 </div>
 
@@ -188,7 +226,7 @@ export default async function Yerba({
         </div>
 
         {dataCount ? (
-          <div className="w-[90%] py-4 border-t-[1px] border-[#ccc] flex justify-end items-center">
+          <div className="w-[90%] py-4 border-t-[1px] border-[#ccc] flex justify-center lg:justify-end items-center">
             <div className="flex gap-5">
               <PaginationControls
                 hasNextPage={end < dataCount}

@@ -67,13 +67,18 @@ export default function NavMobile({ search = true }: any) {
                 onClick={() => setMenu(false)}
               />
               <Link
+                onClick={() => setMenu(false)}
                 href={"/"}
                 className={`text-xl xs:text-2xl flex items-center ${poorStory.className} brightness-[90%] font-bold`}
               >
                 YerbaVibes
               </Link>
               {session && (
-                <Link href={"/user/settings"} className="mx-5">
+                <Link
+                  onClick={() => setMenu(false)}
+                  href={"/user/settings"}
+                  className="mx-5"
+                >
                   {session?.user?.avatar ? (
                     <div
                       className="relative"
@@ -100,6 +105,7 @@ export default function NavMobile({ search = true }: any) {
             <div className="flex-grow flex flex-col justify-between text-md mt-2">
               <div className="flex flex-col">
                 <Link
+                  onClick={() => setMenu(false)}
                   href={"/yerba"}
                   className="px-5 py-3 flex items-center gap-1.5"
                 >
@@ -107,6 +113,7 @@ export default function NavMobile({ search = true }: any) {
                   Yerba mate
                 </Link>
                 <Link
+                  onClick={() => setMenu(false)}
                   href={"/top"}
                   className="px-5 py-3 flex items-center gap-1.5"
                 >
@@ -116,6 +123,7 @@ export default function NavMobile({ search = true }: any) {
                 {session && (
                   <>
                     <Link
+                      onClick={() => setMenu(false)}
                       href={"/user/favorite"}
                       className="px-5 py-3 flex items-center gap-1.5"
                     >
@@ -123,6 +131,7 @@ export default function NavMobile({ search = true }: any) {
                       Favorite list
                     </Link>
                     <Link
+                      onClick={() => setMenu(false)}
                       href={"/user/reviews"}
                       className="px-5 py-3 flex items-center gap-1.5"
                     >
@@ -130,6 +139,7 @@ export default function NavMobile({ search = true }: any) {
                       Your reviews
                     </Link>
                     <Link
+                      onClick={() => setMenu(false)}
                       href={"/user/settings"}
                       className="px-5 py-3 flex items-center gap-1.5"
                     >

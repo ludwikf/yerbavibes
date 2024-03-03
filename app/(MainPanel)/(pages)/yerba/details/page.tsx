@@ -43,7 +43,7 @@ export default async function page({
   const data = await getData();
   const reviews = await getReviews();
   return (
-    <main>
+    <main className="pt-[120px] md:pt-[50px] lg:pt-0">
       <Hero data={data} review={reviews} />
       <Details data={data} />
       <Review data={reviews} />

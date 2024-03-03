@@ -86,7 +86,7 @@ export default function AddReviewButton({ data }: any) {
             className="z-30 absolute left-0 top-0 w-screen h-screen backdrop-blur-[2px] bg-[#0000001c]"
           ></div>
           <div
-            className={`z-40 overflow-hidden w-[60%] h-[500px] bg-bodyTheme border-[1px] border-[#ccc] shadow-xl rounded-2xl flex flex-col`}
+            className={`z-40 overflow-hidden w-[90%] lg:w-[60%] h-[400px] lg:h-[500px] bg-bodyTheme border-[1px] border-[#ccc] shadow-xl rounded-2xl flex flex-col`}
           >
             <div className="w-full px-6 bg-pageTheme h-[45px] text-2xl font-bold flex items-center justify-end text-[#444]">
               <button
@@ -104,7 +104,7 @@ export default function AddReviewButton({ data }: any) {
               }}
               className="p-6 flex flex-col flex-grow "
             >
-              <div className="w-[200px]">
+              <div className="w-[150px] lg:w-[200px]">
                 <div className="flex">
                   {[...Array(5)].map((star, index) => {
                     const currentRating = index + 1;
