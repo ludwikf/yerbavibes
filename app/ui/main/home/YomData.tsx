@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 
 export default function YomData({ data }: any) {
   const [mobile, setMobile] = useState<boolean>(false);
-  const yerba = data[0];
+  const yerba = data;
   const [ref, inView] = useInView({
     triggerOnce: true,
   });
