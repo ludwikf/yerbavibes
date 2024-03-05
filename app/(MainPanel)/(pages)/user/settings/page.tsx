@@ -5,7 +5,7 @@ import PasswordEdit from "@/app/ui/main/user/settings/PasswordEdit";
 import UsernameEdit from "@/app/ui/main/user/settings/UsernameEdit";
 import { authOptions } from "@/libs/authOptions";
 import { getServerSession } from "next-auth";
-import React from "react";
+import React, { Suspense } from "react";
 
 export default async function page() {
   const session: any = await getServerSession(authOptions);

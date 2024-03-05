@@ -22,7 +22,6 @@ export default async function Yom() {
   }
   const yerba = await fetchData();
   const data = yerba[0];
-  console.log(data);
   return (
     <>
       <YomData data={data} />

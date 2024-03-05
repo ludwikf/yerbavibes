@@ -153,7 +153,7 @@ export default function NavMobile({ search = true }: any) {
                     {session.user.role === "admin" && (
                       <Link
                         onClick={() => setMenu(false)}
-                        href={"/user/settings"}
+                        href={"/admin-cp"}
                         className="px-5 py-3 flex items-center gap-1.5 text-red-600"
                       >
                         <CodeBracketIcon className="w-7" />
