@@ -12,6 +12,7 @@ import NavMobile from "./NavMobile";
 
 export default async function NavHome() {
   const session: any = await getServerSession(authOptions);
+  const sessionData = JSON.parse(JSON.stringify(session));
 
   return (
     <>
@@ -97,7 +98,7 @@ export default async function NavHome() {
         </ul>
       </div>
       <div className="lg:hidden absolute flex flex-col items-center w-full pt-1 z-10 select-none">
-        <NavMobile search={false} />
+        <NavMobile session={sessionData} search={false} />
       </div>
     </>
   );

@@ -163,7 +163,7 @@ export default async function Yerba({
             }}
           />
         </div>
-        <div className="w-[100%] flex flex-col lg:flex-row lg:flex-wrap gap-x-[20px] gap-y-[40px] justify-start">
+        <div className="w-[100%] flex flex-col lg:flex-row lg:flex-wrap gap-x-[20px] gap-y-[40px] justify-start pt-[30px] lg:pt-0">
           {entries.map((e: any) => (
             <div
               key={e._id}

@@ -21,10 +21,9 @@ import Logout from "../Logout";
 import { UserCircleIcon } from "@heroicons/react/16/solid";
 import { useSession } from "next-auth/react";
 
-export default function NavMobile({ search = true }: any) {
+export default function NavMobile({ session, search = true }: any) {
   const [menu, setMenu] = useState(false);
   const menuRef = useRef<any>(null);
-  const { data: session }: any = useSession();
 
   const handleClickOutside = (event: any) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
