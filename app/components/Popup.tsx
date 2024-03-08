@@ -1,4 +1,3 @@
-import { XMarkIcon } from "@heroicons/react/24/solid";
 import React, { useEffect, useState } from "react";
 
 export default function Popup({ message, type = "success", onClose }: any) {
