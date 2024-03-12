@@ -11,7 +11,7 @@ export default function NotFound() {
         <div className="flex flex-col gap-2">
           <div className="text-[#aaa]">Error 404</div>
           <div className="text-5xl">There&apos;s nothing here</div>
-          <div className="text-xl">This page could not be found</div>
+          <div className="text-xl">This page could not be found.</div>
           <div>
             <Link
               href={"/"}
