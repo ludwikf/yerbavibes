@@ -5,13 +5,17 @@ import AddReviewButton from "@/app/components/main/AddReviewButton";
 import FavoriteButton from "@/app/components/main/FavoriteButton";
 import Link from "next/link";
 import React from "react";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import { PlusCircleIcon as PlusCircleIconActive } from "@heroicons/react/24/solid";
 
 export default async function Hero({
   data,
   review,
+  session,
 }: {
   data: any;
   review: any;
+  session: any;
 }) {
   const totalRating = review.reduce(
     (acc: any, review: any) => acc + review.rating,
@@ -54,7 +58,18 @@ export default async function Hero({
           </div>
           <div className="text-[#888] text-lg mt-3 text-center flex gap-3">
             <FavoriteButton id={data._id} />
-            <AddReviewButton />
+            {session ? (
+              <AddReviewButton />
+            ) : (
+              <Link
+                href={"/login"}
+                className="group cursor-pointer flex items-center gap-1 select-none text-[#888]"
+              >
+                <PlusCircleIcon className="w-9 group-hover:hidden" />
+                <PlusCircleIconActive className="w-9 hidden group-hover:block text-pageTheme" />
+                <div className="group-hover:text-pageTheme">Add review</div>
+              </Link>
+            )}
           </div>
         </div>
         <div className="flex flex-col mt-2 items-center gap-1.5 w-[100%]">

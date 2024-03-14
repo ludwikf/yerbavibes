@@ -1,6 +1,8 @@
 import Details from "@/app/ui/main/singleProduct/Details";
 import Hero from "@/app/ui/main/singleProduct/Hero";
 import Review from "@/app/ui/main/singleProduct/Review";
+import { authOptions } from "@/libs/authOptions";
+import { getServerSession } from "next-auth";
 import React from "react";
 
 export default async function page({
@@ -8,6 +10,7 @@ export default async function page({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
+  const session = await getServerSession(authOptions);
   const id = searchParams["id"];
   async function getData() {
     try {
@@ -44,7 +47,7 @@ export default async function page({
   const reviews = await getReviews();
   return (
     <main className="pt-[120px] md:pt-[50px] lg:pt-0">
-      <Hero data={data} review={reviews} />
+      <Hero data={data} review={reviews} session={session} />
       <Details data={data} />
       <Review data={reviews} />
     </main>

@@ -1,5 +1,5 @@
 "use client";
-import React, { TextareaHTMLAttributes, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import {
@@ -9,16 +9,14 @@ import {
 } from "@heroicons/react/24/solid";
 import { ButtonSpinner } from "../LoadingSpinner";
 import { useSearchParams } from "next/navigation";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-export default function AddReviewButton({ data }: any) {
+export default function AddReviewButton({ session }: any) {
   const [form, setForm] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [rating, setRating] = useState<any>(null);
   const [hover, setHover] = useState<any>(null);
-  const { data: session, status }: any = useSession();
 
   const searchParams = useSearchParams();
   const post = searchParams.get("id");
@@ -164,25 +162,15 @@ export default function AddReviewButton({ data }: any) {
           </div>
         </div>
       )}
-      {session ? (
-        <div
-          onClick={() => setForm(true)}
-          className="group cursor-pointer flex items-center gap-1 select-none text-[#888]"
-        >
-          <PlusCircleIcon className="w-9 group-hover:hidden" />
-          <PlusCircleIconActive className="w-9 hidden group-hover:block text-pageTheme" />
-          <div className="group-hover:text-pageTheme">Add review</div>
-        </div>
-      ) : (
-        <Link
-          href={"/login"}
-          className="group cursor-pointer flex items-center gap-1 select-none text-[#888]"
-        >
-          <PlusCircleIcon className="w-9 group-hover:hidden" />
-          <PlusCircleIconActive className="w-9 hidden group-hover:block text-pageTheme" />
-          <div className="group-hover:text-pageTheme">Add review</div>
-        </Link>
-      )}
+
+      <div
+        onClick={() => setForm(true)}
+        className="group cursor-pointer flex items-center gap-1 select-none text-[#888]"
+      >
+        <PlusCircleIcon className="w-9 group-hover:hidden" />
+        <PlusCircleIconActive className="w-9 hidden group-hover:block text-pageTheme" />
+        <div className="group-hover:text-pageTheme">Add review</div>
+      </div>
     </>
   );
 }

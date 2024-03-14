@@ -1,12 +1,16 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import AddReviewButton from "@/app/components/main/AddReviewButton";
 import RatingStars from "@/app/components/RatingStars";
 import SingleReview from "@/app/components/main/SingleReview";
 import { useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { PlusCircleIcon as PlusCircleIconActive } from "@heroicons/react/24/solid";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
 export default function Review({ data }: any) {
+  const { data: session } = useSession();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   let rating: any = 0;
@@ -70,7 +74,18 @@ export default function Review({ data }: any) {
         </div>
         <div className="self-center lg:self-start">
           <div className="flex  my-7">
-            <AddReviewButton data={data} />
+            {session ? (
+              <AddReviewButton />
+            ) : (
+              <Link
+                href={"/login"}
+                className="group cursor-pointer flex items-center gap-1 select-none text-[#888]"
+              >
+                <PlusCircleIcon className="w-9 group-hover:hidden" />
+                <PlusCircleIconActive className="w-9 hidden group-hover:block text-pageTheme" />
+                <div className="group-hover:text-pageTheme">Add review</div>
+              </Link>
+            )}
           </div>
           {reviewsToDisplay.map((e: any) => (
             <div key={e._id} className="w-[90vw] lg:w-[650px]">
