@@ -10,7 +10,7 @@ import { PlusCircleIcon as PlusCircleIconActive } from "@heroicons/react/24/soli
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
 export default function Review({ data }: any) {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   let rating: any = 0;
@@ -60,12 +60,16 @@ export default function Review({ data }: any) {
                 <div key={rating} className="flex justify-center items-center">
                   <div className="text-sm">{rating}</div>
                   <div className="w-full ml-3 bg-[#cfcfcf] rounded h-2.5">
-                    <div
-                      className="bg-pageTheme h-2.5 rounded-full"
-                      style={{
-                        width: `${(ratingCounts[rating] / data.length) * 100}%`,
-                      }}
-                    ></div>
+                    {ratingCounts[rating] > 0 && (
+                      <div
+                        className="bg-pageTheme h-2.5 rounded-full"
+                        style={{
+                          width: `${
+                            (ratingCounts[rating] / data.length) * 100
+                          }%`,
+                        }}
+                      ></div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -74,17 +78,21 @@ export default function Review({ data }: any) {
         </div>
         <div className="self-center lg:self-start">
           <div className="flex  my-7">
-            {session ? (
-              <AddReviewButton />
-            ) : (
-              <Link
-                href={"/login"}
-                className="group cursor-pointer flex items-center gap-1 select-none text-[#888]"
-              >
-                <PlusCircleIcon className="w-9 group-hover:hidden" />
-                <PlusCircleIconActive className="w-9 hidden group-hover:block text-pageTheme" />
-                <div className="group-hover:text-pageTheme">Add review</div>
-              </Link>
+            {status !== "loading" && (
+              <>
+                {session ? (
+                  <AddReviewButton />
+                ) : (
+                  <Link
+                    href={"/login"}
+                    className="group cursor-pointer flex items-center gap-1 select-none text-[#888]"
+                  >
+                    <PlusCircleIcon className="w-9 group-hover:hidden" />
+                    <PlusCircleIconActive className="w-9 hidden group-hover:block text-pageTheme" />
+                    <div className="group-hover:text-pageTheme">Add review</div>
+                  </Link>
+                )}
+              </>
             )}
           </div>
           {reviewsToDisplay.map((e: any) => (
