@@ -83,8 +83,6 @@ body {
   display: block;
 }
 
-/* styles.css or global.css */
-
 @keyframes slideFromLeft {
   from {
     transform: translateX(-110%);
