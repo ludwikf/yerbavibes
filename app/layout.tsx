@@ -20,6 +20,13 @@ export default async function RootLayout({
   const session = await getServerSession();
   return (
     <html>
+      <head>
+        <script
+          defer
+          data-domain="yerbavibes.com"
+          src="https://plausible.io/js/script.js"
+        ></script>
+      </head>
       <body className={SS3.className}>
         <SessionProvider session={session}>{children}</SessionProvider>
       </body>
