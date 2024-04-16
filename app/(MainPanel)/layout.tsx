@@ -2,7 +2,6 @@ import { Roboto } from "next/font/google";
 
 import { getServerSession } from "next-auth/next";
 import SessionProvider from "@/libs/SessionProvider";
-import Navbar from "../components/main/Navbar";
 import Footer from "../components/main/Footer";
 import NextTopLoader from "nextjs-toploader";
 
