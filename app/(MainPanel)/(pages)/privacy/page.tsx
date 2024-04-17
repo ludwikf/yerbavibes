@@ -174,10 +174,10 @@ export default function page() {
             sell or buy other businesses or services. In such transactions, user
             information generally is one of the transferred business assets but
             remains subject to the promises made in any pre-existing Privacy
-            Notice (unless, of course, the user consents otherwise). Also, in
-            the unlikely event that YerbaVibes.com, Inc. or substantially all of
-            its assets are acquired, user information will of course be one of
-            the transferred assets.
+            Notice (unless, of course, the user consents otherwise). Also in the
+            unlikely event that YerbaVibes.com, Inc. or substantially all of its
+            assets are acquired, user information will of course be one of the
+            transferred assets.
           </span>
           <span>
             Protection of YerbaVibes and Others: We release account and other
