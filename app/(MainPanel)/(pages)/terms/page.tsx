@@ -57,7 +57,7 @@ export default function page() {
             All content included on this site in or made available through any
             YerbaVibes Service, such as text, graphics, logos, button icons,
             images, audio clips, video clips, digital downloads, data
-            compilations, and software, is the property of YerbaVibes or its
+            compilations and software, is the property of YerbaVibes or its
             content suppliers and protected by European and international
             copyright laws. The compilation of all content included in or made
             available through any YerbaVibes Service is the exclusive property
