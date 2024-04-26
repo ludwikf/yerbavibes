@@ -13,9 +13,9 @@ export default async function page() {
       <Suspense fallback={<YomSkeleton />}>
         <Yom />
       </Suspense>
-      <Suspense fallback={<YomSkeleton />}>
+      {/* <Suspense fallback={<YomSkeleton />}>
         <Popular />
-      </Suspense>
+      </Suspense> */}
     </main>
   );
 }
